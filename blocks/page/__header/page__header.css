@@ -1,0 +1,4 @@
+.page__header {
+  grid-area: header;
+  margin-bottom: 40px;
+}

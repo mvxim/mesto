@@ -1,0 +1,14 @@
+.page__container {
+  min-width: 320px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 45px 0 60px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: 48px 1fr 48px;
+  grid-template-areas:
+    ". header ."
+    ". main ."
+    ". footer .";
+}
