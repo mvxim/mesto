@@ -4,7 +4,7 @@
   column-gap: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .profile__bio{
     flex-direction: column;
     row-gap: 26px;

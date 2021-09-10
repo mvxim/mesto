@@ -18,6 +18,7 @@
 
 /* main */
 @import url(../blocks/main/main.css);
+@import url(../blocks/main/__profile/main__profile.css);
 
 /* button */
 @import url(../blocks/button/button.css);
@@ -33,6 +34,11 @@
 @import url(../blocks/profile/__desc/profile__desc.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
 
-/** {*/
-/*  border: 1px solid dodgerblue;*/
-/*}*/
+/* gallery */
+@import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__grid/gallery__grid.css);
+@import url(../blocks/gallery/__item/gallery__item.css);
+@import url(../blocks/gallery/__image/gallery__image.css);
+@import url(../blocks/gallery/__caption/gallery__caption.css);
+@import url(../blocks/gallery/__text/gallery__text.css);
+@import url(../blocks/gallery/__like-btn/gallery__like-btn.css);

@@ -1,0 +1,7 @@
+.gallery__like-btn {
+  border: none;
+  background: transparent url('../../../images/gallery/like-btn.svg') no-repeat center center;
+  display: inline-block;
+  width: 22px;
+  
+}
