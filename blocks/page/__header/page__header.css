@@ -1,4 +1,9 @@
 .page__header {
-  grid-area: header;
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .page__header {
+    margin-bottom: 42px;
+  }
 }

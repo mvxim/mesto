@@ -1,0 +1,10 @@
+.profile__add-btn {
+  border: 2px solid #fff;
+  background: url('../../../images/profile/profile__add-btn.svg') no-repeat center;
+  width: 150px;
+  height: 50px;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
+}
