@@ -1,4 +1,4 @@
-// выбираю элементы на странице
+const page = document.querySelector('.page') //выбираем всю страницу
 const modal = document.querySelector('.modal') //выбираем модалку с затемнением
 const profileEditBtn = document.querySelector('.profile__edit-btn') //выбираем кнопку редактирования
 const modalCloseBtn = document.querySelector('.modal__close-btn') //выбираем кнопку закрытия
@@ -11,20 +11,13 @@ const descInput = document.querySelector('.modal__input_desc') //поле вво
 // функции, управляющие открытием и закрытием модалки
 function modalOn() {
     modal.classList.add('modal_active')
+    page.classList.add('page_no-scroll')
 }
 
 function modalOff() {
     modal.classList.remove('modal_active')
+    page.classList.remove('page_no-scroll')
 }
-
-// листнеры кликов по кнопкам
-profileEditBtn.addEventListener('click', modalOn)
-modalCloseBtn.addEventListener('click', modalOff)
-modal.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-        modalOff()
-    }
-})
 
 // функция, которая получает value полей формы
 function updateProfileDetails(event) {
@@ -33,5 +26,15 @@ function updateProfileDetails(event) {
     profileDesc.textContent = descInput.value // передаю значение поля desc в профиль, в элемент с классом .profile__desc
     modalOff()
 }
+
+// листнеры кликов по кнопкам
+profileEditBtn.addEventListener('click', modalOn)
+modalCloseBtn.addEventListener('click', modalOff)
+modal.addEventListener('click', function (event) {
+
+    if (event.target === event.currentTarget) {
+        modalOff()
+    }
+})
 
 formElement.addEventListener('submit', updateProfileDetails)
