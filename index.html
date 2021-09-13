@@ -14,8 +14,7 @@
     <div class="page__container">
       <header class="header page__header">
         <a href="#" class="header__link">
-          <img src="./images/logo/logo_color_white.svg" alt="Логотип сервиса «Место»." class="header__logo">
-        </a>
+          <img src="./images/logo/logo_color_white.svg" alt="Логотип сервиса «Место»." class="header__logo"> </a>
       </header>
       <main class="main page__main">
         <section class="profile main__profile" aria-label="Профиль пользователя">
@@ -82,6 +81,15 @@
         <small class="footer__copyright">© 2021 Mesto Russia</small>
       </footer>
     </div>
+    <section class="modal profile__modal">
+      <form class="modal__form">
+        <button class="modal__close-btn"></button>
+        <h2 class="modal__title">Редактировать профиль</h2>
+        <input type="text" id="formName" class="modal__input modal__input_name" placeholder="Ваше имя">
+        <input type="text" id="formDesc" class="modal__input modal__input_desc" placeholder="Расскажите о себе">
+        <button type="submit" id="formSubmit" class="button modal__button">Сохранить</button>
+      </form>
+    </section>
   </div>
 </body>
 

@@ -6,6 +6,7 @@
 
 /* page */
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/_no-scroll/page_no-scroll.css);
 @import url(../blocks/page/__container/page__container.css);
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__main/page__main.css);
@@ -33,6 +34,7 @@
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__desc/profile__desc.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
+@import url(../blocks/profile/__modal/profile__modal.css);
 
 /* gallery */
 @import url(../blocks/gallery/gallery.css);
@@ -46,3 +48,14 @@
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/* modal */
+@import url(../blocks/modal/modal.css);
+@import url(../blocks/modal/_active/modal_active.css);
+@import url(../blocks/modal/__form/modal__form.css);
+@import url(../blocks/modal/__title/modal__title.css);
+@import url(../blocks/modal/__input/modal__input.css);
+@import url(../blocks/modal/__input/_name/modal__input_name.css);
+@import url(../blocks/modal/__input/_desc/modal__input_desc.css);
+@import url(../blocks/modal/__button/modal__button.css);
+@import url(../blocks/modal/__close-btn/modal__close-btn.css);

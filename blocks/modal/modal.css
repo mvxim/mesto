@@ -1,0 +1,15 @@
+.modal {
+  background-color: hsla(0, 0%, 0%, .5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 48px;
+}
+
+@media screen and (max-width: 767px) {
+  .modal {
+    padding: 0 19px;
+  }
+  
+}
