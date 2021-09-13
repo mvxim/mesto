@@ -9,6 +9,12 @@
   background: url('../../../images/modal/modal__close-btn.svg') no-repeat center center;
   background-size: contain;
   padding: 0;
+  cursor: pointer;
+  transition: .2s opacity ease;
+}
+
+.modal__close-btn:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 767px) {

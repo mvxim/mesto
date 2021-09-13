@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Место</title>
+  <title></title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 
@@ -19,7 +19,7 @@
       <main class="main page__main">
         <section class="profile main__profile" aria-label="Профиль пользователя">
           <div class="profile__bio">
-            <img src="./images/profile/avatar-gem.png" alt="" class="profile__avatar">
+            <img src="./images/profile/avatar-gem.png" alt="Фотография профиля пользователя" class="profile__avatar">
             <div class="profile__details">
               <div class="profile__row">
                 <h1 class="profile__name">Южный Урал</h1>
@@ -33,42 +33,42 @@
         <section class="gallery" aria-label="Фотографии пользователя">
           <ul class="gallery__grid">
             <li class="gallery__item">
-              <img src="images/gallery/1.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/1.jpg" alt="Вид на высокие скалы — Зубчатки. Лес и горы вдалеке." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">💙 Зубчатки ️</p>
                 <button class="gallery__like-btn"></button>
               </div>
             </li>
             <li class="gallery__item">
-              <img src="images/gallery/3.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/3.jpg" alt="Каменная река в лесу: русло завалено валунами разной формы и размера." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">🗿 Курум</p>
                 <button class="gallery__like-btn"></button>
               </div>
             </li>
             <li class="gallery__item">
-              <img src="images/gallery/4.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/4.jpg" alt="Песчаный берег с деревьями круто обрывается в чистое озеро Джабык." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">🏝 Джабык</p>
                 <button class="gallery__like-btn"></button>
               </div>
             </li>
             <li class="gallery__item">
-              <img src="images/gallery/6.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/6.jpg" alt="Река Агидель, которая змеится между высоких скал." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">🏞 Река Агидель</p>
                 <button class="gallery__like-btn"></button>
               </div>
             </li>
             <li class="gallery__item">
-              <img src="images/gallery/7.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/7.jpg" alt="Вид с высоты на лес, подернутый осенней рыжиной, и гору Ямантау вдалеке." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">🏔 Ямантау </p>
                 <button class="gallery__like-btn"></button>
               </div>
             </li>
             <li class="gallery__item">
-              <img src="images/gallery/8.jpg" alt="" class="gallery__image">
+              <img src="images/gallery/8.jpg" alt="Вид на голубое озеро Тургояк со скалы." class="gallery__image">
               <div class="gallery__caption">
                 <p class="gallery__text">🌊 Тургояк </p>
                 <button class="gallery__like-btn"></button>
@@ -85,12 +85,13 @@
       <form class="modal__form">
         <button class="modal__close-btn"></button>
         <h2 class="modal__title">Редактировать профиль</h2>
-        <input type="text" id="formName" class="modal__input modal__input_name" placeholder="Ваше имя">
-        <input type="text" id="formDesc" class="modal__input modal__input_desc" placeholder="Расскажите о себе">
-        <button type="submit" id="formSubmit" class="button modal__button">Сохранить</button>
+        <input aria-label="Поле ввода для имени" type="text" class="modal__input modal__input_name" placeholder="Ваше имя">
+        <input aria-label="Поле ввода для описания" type="text" class="modal__input modal__input_desc" placeholder="Расскажите о себе">
+        <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Сохранить</button>
       </form>
     </section>
   </div>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
