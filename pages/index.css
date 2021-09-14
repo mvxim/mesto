@@ -6,6 +6,7 @@
 
 /* page */
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/__modal/page__modal.css);
 @import url(../blocks/page/_no-scroll/page_no-scroll.css);
 @import url(../blocks/page/__container/page__container.css);
 @import url(../blocks/page/__header/page__header.css);
@@ -38,7 +39,6 @@
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__desc/profile__desc.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
-@import url(../blocks/profile/__modal/profile__modal.css);
 
 /* gallery */
 @import url(../blocks/gallery/gallery.css);
