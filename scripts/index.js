@@ -8,33 +8,41 @@ const formElement = document.querySelector('.modal__form') //выбираем ф
 const nameInput = document.querySelector('.modal__input_name') //поле ввода имени в форме
 const descInput = document.querySelector('.modal__input_desc') //поле ввода описания в форме
 
-// функции, управляющие открытием и закрытием модалки
+// открывает модальное окно
 function modalOn() {
     modal.classList.add('modal_active')
     page.classList.add('page_no-scroll')
+    nameInput.value = profileName.textContent
+    descInput.value = profileDesc.textContent
 }
 
+// закрывает модальное окно
 function modalOff() {
     modal.classList.remove('modal_active')
     page.classList.remove('page_no-scroll')
 }
 
-// функция, которая получает value полей формы
+// обновляет текст на странице в разделе «профиль»
 function updateProfileDetails(event) {
-    event.preventDefault() //предотвращаю перезагрузку страницы при отправке формы
-    profileName.textContent = nameInput.value // передаю значение поля name в профиль, в элемент с классом .profile__name
-    profileDesc.textContent = descInput.value // передаю значение поля desc в профиль, в элемент с классом .profile__desc
-    modalOff()
+    event.preventDefault() //предотвращает перезагрузку страницы при отправке формы
+    if (nameInput.value === '') { //если в поле формы ничего не ввели, то ничего не происходит
+    } else {
+        profileName.textContent = nameInput.value //если всё-таки ввели, то значение из поля подставляется в страницу
+    }
+    if (descInput.value === '') {
+    } else {
+        profileDesc.textContent = descInput.value
+    }
+    modalOff() // при сохранении модалка закрывается
 }
 
-// листнеры кликов по кнопкам
-profileEditBtn.addEventListener('click', modalOn)
-modalCloseBtn.addEventListener('click', modalOff)
-modal.addEventListener('click', function (event) {
-
+// листнеры событий
+profileEditBtn.addEventListener('click', modalOn) // при клике по кнопке редактирования открывает модалку
+modalCloseBtn.addEventListener('click', modalOff) // при клике по кнопке закрытия закрывает
+modal.addEventListener('click', function (event) { // при клике за пределами формы, но в пределах оверлея закрывает модалку
     if (event.target === event.currentTarget) {
         modalOff()
     }
 })
 
-formElement.addEventListener('submit', updateProfileDetails)
+formElement.addEventListener('submit', updateProfileDetails) // когда форма отправляется, обновляет текст на странице
