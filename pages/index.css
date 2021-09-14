@@ -24,6 +24,10 @@
 /* button */
 @import url(../blocks/button/button.css);
 
+/* like */
+@import url(../blocks/like/like.css);
+@import url(../blocks/like/_active/like_active.css);
+
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
