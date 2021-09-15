@@ -22,11 +22,11 @@
           <div class="profile__details">
             <div class="profile__row">
               <h1 class="profile__name">Южный Урал</h1>
-              <button class="button profile__edit-btn"></button>
+              <button type="button" class="button profile__edit-btn"></button>
             </div>
             <p class="profile__desc">Красоты Южного Урала и восточной Башкирии</p>
           </div>
-          <button class="button profile__add-btn"></button>
+          <button type="button" class="button profile__add-btn"></button>
         </div>
       </section>
       <section class="gallery" aria-label="Фотографии пользователя">
@@ -77,15 +77,15 @@
       </section>
     </main>
     <footer class="footer">
-      <small class="footer__copyright">© 2021 Mesto Russia</small>
+      <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
   </div>
   <section class="modal page__modal">
-    <form class="modal__form">
+    <form name="bio-form" class="modal__form">
       <button type="button" class="modal__close-btn"></button>
       <h2 class="modal__title">Редактировать профиль</h2>
-      <input aria-label="Поле ввода для имени" type="text" class="modal__input modal__input_name" placeholder="Ваше имя">
-      <input aria-label="Поле ввода для описания" type="text" class="modal__input modal__input_desc" placeholder="Расскажите о себе">
+      <input aria-label="Поле ввода для имени" type="text" name="bio-input-name" class="modal__input modal__input_field_name" placeholder="Ваше имя">
+      <input aria-label="Поле ввода для описания" type="text" name="bio-input-desc" class="modal__input modal__input_field_desc" placeholder="Расскажите о себе">
       <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Сохранить</button>
     </form>
   </section>
