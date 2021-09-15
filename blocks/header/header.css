@@ -1,6 +1,6 @@
 .header{
   padding-bottom: 41px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid hsla(0, 0%, 33%, .7);
 }
 
 @media screen and (max-width: 767px) {
