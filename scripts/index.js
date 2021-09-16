@@ -1,13 +1,13 @@
-const page = document.querySelector('.page') //выбираем всю страницу
-const modal = document.querySelector('.modal') //выбираем модалку с затемнением
-const profileEditBtn = document.querySelector('.profile__edit-btn') //выбираем кнопку редактирования
-const modalCloseBtn = document.querySelector('.modal__close-btn') //выбираем кнопку закрытия
-const profileName = document.querySelector('.profile__name') //выбираем имя профиля
-const profileDesc = document.querySelector('.profile__desc') //выбираем описание профиля
-const formElement = document.querySelector('.modal__form') //выбираем форму целиком
-const nameInput = document.querySelector('.modal__input_name') //поле ввода имени в форме
-const descInput = document.querySelector('.modal__input_desc') //поле ввода описания в форме
-const likeBtn = document.querySelectorAll('.like') //все кнопки лайка
+const page = document.querySelector('.page')
+const modal = document.querySelector('.modal')
+const profileEditBtn = document.querySelector('.profile__edit-btn')
+const modalCloseBtn = document.querySelector('.modal__close-btn')
+const profileName = document.querySelector('.profile__name')
+const profileDesc = document.querySelector('.profile__desc')
+const formElement = document.querySelector('.modal__form')
+const nameInput = document.querySelector('.modal__input_field_name') // переволновался
+const descInput = document.querySelector('.modal__input_field_desc') // :—)
+const likeBtn = document.querySelectorAll('.like')
 
 // открывает модальное окно
 function modalOn() {

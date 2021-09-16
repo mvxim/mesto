@@ -11,7 +11,6 @@
 @import url(../blocks/page/__container/page__container.css);
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__main/page__main.css);
-@import url(../blocks/page/__footer/page__footer.css);
 
 /* header */
 @import url(../blocks/header/header.css);
