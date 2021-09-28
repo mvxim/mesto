@@ -1,12 +1,17 @@
 const page = document.querySelector('.page')
-const modal = document.querySelector('.modal')
-const profileEditBtn = document.querySelector('.profile__edit-btn')
-const modalCloseBtn = document.querySelector('.modal__close-btn')
+// Имя и описание
 const profileName = document.querySelector('.profile__name')
 const profileDesc = document.querySelector('.profile__desc')
+
+// Модалка-редактор
+const modal = document.querySelector('.modal')
 const formElement = document.querySelector('.modal__form')
-const nameInput = document.querySelector('.modal__input_field_name') // переволновался
-const descInput = document.querySelector('.modal__input_field_desc') // :—)
+const nameInput = document.querySelector('.modal__input_field_name')
+const descInput = document.querySelector('.modal__input_field_desc')
+
+// Кнопки
+const profileEditBtn = document.querySelector('.profile__edit-btn')
+const modalCloseBtn = document.querySelector('.modal__close-btn')
 const likeBtn = document.querySelectorAll('.like')
 
 // открывает модальное окно
