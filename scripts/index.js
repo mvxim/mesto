@@ -1,62 +1,142 @@
+// Страница
 const page = document.querySelector('.page')
+
+// Галерея
+const gallery = document.querySelector('.gallery__grid')
+const galleryTemplateItem = document.querySelector('.gallery__item-template')
+
 // Имя и описание
 const profileName = document.querySelector('.profile__name')
 const profileDesc = document.querySelector('.profile__desc')
 
-// Модалка-редактор
-const modal = document.querySelector('.modal')
-const formElement = document.querySelector('.modal__form')
-const nameInput = document.querySelector('.modal__input_field_name')
-const descInput = document.querySelector('.modal__input_field_desc')
+// Модалки
+const modal = document.querySelectorAll('.modal')
+
+// Редактирование био
+const formBioElement = document.querySelector('.modal_type_bio')
+const nameInput = formBioElement.querySelector('.modal__input_field_name')
+const descInput = formBioElement.querySelector('.modal__input_field_desc')
+
+// Добавление карточки
+const formCardElement = document.querySelector('.modal_type_card')
+const titleInput = formCardElement.querySelector('.modal__input_field_title')
+const pictureInput = formCardElement.querySelector('.modal__input_field_picture')
 
 // Кнопки
 const profileEditBtn = document.querySelector('.profile__edit-btn')
-const modalCloseBtn = document.querySelector('.modal__close-btn')
-const likeBtn = document.querySelectorAll('.like')
+const addNewPictureBtn = document.querySelector('.profile__add-btn')
+const modalCloseBtn = document.querySelectorAll('.modal__close-btn')
+const deleteItemBtn = document.querySelectorAll('.gallery__remove-btn')
+
+// Набор карточек
+const places = [
+  {
+    name: '💙 Зубчатки',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/1.jpg'
+  },
+  {
+    name: '🗿 Курум',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899136/mesto/3.jpg'
+  },
+  {
+    name: '🏝 Джабык',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/4.jpg'
+  },
+  {
+    name: '🏞 Река Агидель',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/6.jpg'
+  },
+  {
+    name: '🏔 Ямантау',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/7.jpg'
+  },
+  {
+    name: '🌊 Тургояк',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899133/mesto/8.jpg'
+  }
+];
+
+function renderPlace(place) {
+  const newPlace = galleryTemplateItem.content.cloneNode(true)
+  newPlace.querySelector('.gallery__text').textContent = place.name
+  newPlace.querySelector('.gallery__image').setAttribute('src', place.link)
+  newPlace.querySelector('.like').addEventListener('click', like)
+  gallery.prepend(newPlace)
+}
+
+places.forEach(renderPlace)
+
 
 // открывает модальное окно
-function modalOn() {
-  modal.classList.add('modal_active')
+function modalOn(modalElement) {
+  modalElement.classList.add('modal_active')
+  if (modalElement === formBioElement) {
+    nameInput.value = profileName.textContent
+    descInput.value = profileDesc.textContent
+  }
   page.classList.add('page_no-scroll')
-  nameInput.value = profileName.textContent
-  descInput.value = profileDesc.textContent
 }
 
 // закрывает модальное окно
-function modalOff() {
-  modal.classList.remove('modal_active')
+function modalOff(modalElement) {
+  modalElement.classList.remove('modal_active')
   page.classList.remove('page_no-scroll')
 }
 
 // обновляет текст на странице в разделе «профиль»
 function updateProfileDetails(event) {
-  event.preventDefault() //предотвращает перезагрузку страницы при отправке формы
-  if (nameInput.value === '') { //если в поле формы ничего не ввели, то ничего не происходит
+  event.preventDefault()
+  if (nameInput.value === '') {
   } else {
-    profileName.textContent = nameInput.value //если всё-таки ввели, то значение из поля подставляется в страницу
+    profileName.textContent = nameInput.value
   }
   if (descInput.value === '') {
   } else {
     profileDesc.textContent = descInput.value
   }
-  modalOff() // при сохранении модалка закрывается
+  modalOff(formBioElement)
 }
+formBioElement.addEventListener('submit', updateProfileDetails)
 
-// листнеры событий
-profileEditBtn.addEventListener('click', modalOn) // при клике по кнопке редактирования открывает модалку
-modalCloseBtn.addEventListener('click', modalOff) // при клике по кнопке закрытия закрывает
-modal.addEventListener('click', function (event) { // при клике за пределами формы, но в пределах оверлея закрывает модалку
-  if (event.target === event.currentTarget) {
-    modalOff()
+// добавляет новую карточку
+function createNewPlace(event) {
+  event.preventDefault()
+  let newItem = {
+    name: titleInput.value,
+    link: pictureInput.value,
   }
+  places.push(newItem)
+  renderPlace(newItem)
+  modalOff(formCardElement)
+}
+formCardElement.addEventListener('submit', createNewPlace)
+
+// Листнеры: открытие модальных окон
+profileEditBtn.addEventListener('click', () => modalOn(formBioElement))
+addNewPictureBtn.addEventListener('click', () => modalOn(formCardElement))
+
+
+// Листнеры: закрытие модальных окон
+modal.forEach((item) => {
+  item.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      modalOff(event.target)
+    }
+  })
 })
 
-// отправка формы
-formElement.addEventListener('submit', updateProfileDetails) // когда форма отправляется, обновляет текст на странице
+modalCloseBtn.forEach((item) => {
+  item.addEventListener('click', () => {
+    modalOff(item.closest('.modal'))
+  })
+})
+
+
+// Манипуляции с элементами: обновление инфы в био и добавление нового места
+ // когда форма отправляется, обновляет текст на странице
+
 
 // активация лайка
-for (let button = 0; button < likeBtn.length; button++) { // вешаем листнер на каждый элемент массива с классом .like
-  likeBtn[button].addEventListener('click', function (event) {
-    event.target.classList.toggle('like_active') // элемент, по которому кликнули, меняет свой класс
-  })
+function like(event) {
+  event.target.classList.toggle('like_active')
 }

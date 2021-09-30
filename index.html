@@ -31,48 +31,6 @@
       </section>
       <section class="gallery" aria-label="Фотографии пользователя">
         <ul class="gallery__grid">
-          <li class="gallery__item">
-            <img src="images/gallery/1.jpg" alt="Вид на высокие скалы — Зубчатки. Лес и горы вдалеке." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">💙 Зубчатки ️</p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery/3.jpg" alt="Каменная река в лесу: русло завалено валунами разной формы и размера." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">🗿 Курум</p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery/4.jpg" alt="Песчаный берег с деревьями круто обрывается в чистое озеро Джабык." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">🏝 Джабык</p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery/6.jpg" alt="Река Агидель, которая змеится между высоких скал." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">🏞 Река Агидель</p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery/7.jpg" alt="Вид с высоты на лес, подернутый осенней рыжиной, и гору Ямантау вдалеке." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">🏔 Ямантау </p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery/8.jpg" alt="Вид на голубое озеро Тургояк со скалы." class="gallery__image">
-            <div class="gallery__caption">
-              <p class="gallery__text">🌊 Тургояк </p>
-              <button type="button" class="like gallery__like-btn"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -80,15 +38,37 @@
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
   </div>
-  <section class="modal page__modal">
-    <form name="bio-form" class="modal__form">
+  <section class="modal modal_type_bio page__modal">
+    <div class="modal__container">
       <button type="button" class="modal__close-btn"></button>
-      <h2 class="modal__title">Редактировать профиль</h2>
-      <input aria-label="Поле ввода для имени" type="text" name="bio-input-name" class="modal__input modal__input_field_name" placeholder="Ваше имя">
-      <input aria-label="Поле ввода для описания" type="text" name="bio-input-desc" class="modal__input modal__input_field_desc" placeholder="Расскажите о себе">
-      <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Сохранить</button>
-    </form>
+      <form name="bio-form" class="modal__form">
+        <h2 class="modal__title">Редактировать профиль</h2>
+        <input aria-label="Поле ввода для имени" type="text" name="bio-input-name" class="modal__input modal__input_field_name" placeholder="Ваше имя">
+        <input aria-label="Поле ввода для описания" type="text" name="bio-input-desc" class="modal__input modal__input_field_desc" placeholder="Расскажите о себе">
+        <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Сохранить</button>
+      </form>
+    </div>
   </section>
+  <section class="modal modal_type_card page__modal">
+    <div class="modal__container">
+      <button type="button" class="modal__close-btn"></button>
+      <form name="card-form" class="modal__form">
+        <h2 class="modal__title">Новое место</h2>
+        <input aria-label="Поле ввода для названия карточки" type="text" name="card-input-title" class="modal__input modal__input_field_title" placeholder="Название">
+        <input aria-label="Поле ввода для адреса картинки" type="text" name="card-input-picture" class="modal__input modal__input_field_picture" placeholder="Ссылочка на картиночку">
+        <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Создать</button>
+      </form>
+    </div>
+  </section>
+  <template class="gallery__item-template">
+    <li class="gallery__item">
+      <img class="gallery__image">
+      <div class="gallery__caption">
+        <p class="gallery__text"></p>
+        <button type="button" class="like gallery__like-btn"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 

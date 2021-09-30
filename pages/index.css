@@ -55,10 +55,16 @@
 /* modal */
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/_active/modal_active.css);
+@import url(../blocks/modal/__container/modal__container.css);
 @import url(../blocks/modal/__form/modal__form.css);
 @import url(../blocks/modal/__title/modal__title.css);
 @import url(../blocks/modal/__input/modal__input.css);
 @import url(../blocks/modal/__input/_field/modal__input_field_name.css);
 @import url(../blocks/modal/__input/_field/modal__input_field_desc.css);
+@import url(../blocks/modal/__input/_field/modal__input_field_title.css);
+@import url(../blocks/modal/__input/_field/modal__input_field_picture.css);
 @import url(../blocks/modal/__button/modal__button.css);
 @import url(../blocks/modal/__close-btn/modal__close-btn.css);
+@import url(../blocks/modal/_type/modal_type_bio.css);
+@import url(../blocks/modal/_type/modal_type_card.css);
+@import url(../blocks/modal/_type/modal_type_picture.css);
