@@ -25,7 +25,7 @@ const pictureInput = formCardElement.querySelector('.modal__input_field_picture'
 // Кнопки
 const profileEditBtn = document.querySelector('.profile__edit-btn')
 const addNewPictureBtn = document.querySelector('.profile__add-btn')
-const modalCloseBtn = document.querySelectorAll('.modal__close-btn')
+const modalCloseBtns = document.querySelectorAll('.modal__close-btn')
 
 // Просмотр картинки
 const maxModal = document.querySelector('.modal_type_picture')
@@ -79,7 +79,7 @@ function renderPlace(place) {
 places.forEach(renderPlace)
 
 // открывает модальные окна
-function modalOn(modalElement) {
+function openModal(modalElement) {
   modalElement.classList.add('modal_active')
   if (modalElement === formBioElement) {
     nameInput.value = profileName.textContent
@@ -88,11 +88,11 @@ function modalOn(modalElement) {
   page.classList.add('page_no-scroll')
 }
 
-profileEditBtn.addEventListener('click', () => modalOn(formBioElement))
-addNewPictureBtn.addEventListener('click', () => modalOn(formCardElement))
+profileEditBtn.addEventListener('click', () => openModal(formBioElement))
+addNewPictureBtn.addEventListener('click', () => openModal(formCardElement))
 
 // закрывает модальные окна
-function modalOff(modalElement) {
+function closeModal(modalElement) {
   modalElement.classList.remove('modal_active')
   page.classList.remove('page_no-scroll')
 }
@@ -101,14 +101,14 @@ function modalOff(modalElement) {
 modals.forEach((item) => {
   item.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-      modalOff(event.target)
+      closeModal(event.target)
     }
   })
 })
 
-modalCloseBtn.forEach((item) => {
+modalCloseBtns.forEach((item) => {
   item.addEventListener('click', () => {
-    modalOff(item.closest('.modal'))
+    closeModal(item.closest('.modal'))
   })
 })
 
@@ -123,7 +123,7 @@ function updateProfileDetails(event) {
   } else {
     profileDesc.textContent = descInput.value
   }
-  modalOff(formBioElement)
+  closeModal(formBioElement)
 }
 
 formBioElement.addEventListener('submit', updateProfileDetails)
@@ -131,13 +131,13 @@ formBioElement.addEventListener('submit', updateProfileDetails)
 // добавляет новую карточку
 function createNewPlace(event) {
   event.preventDefault()
-  let newItem = {
+  const newItem = {
     name: titleInput.value,
     link: pictureInput.value,
   }
   places.push(newItem)
   renderPlace(newItem)
-  modalOff(formCardElement)
+  closeModal(formCardElement)
   titleInput.value = ''
   pictureInput.value = ''
 }
@@ -157,7 +157,7 @@ function deletePlace(event) {
 
 // открывает картинку
 function maximizePlace(image, alt, caption) {
-  modalOn(maxModal)
+  openModal(maxModal)
   maxModalPicture.src = image
   maxModalPicture.alt = alt
   maxModalCaption.textContent = caption
