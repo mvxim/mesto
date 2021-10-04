@@ -61,7 +61,7 @@ const places = [
 ];
 
 // создает карточки с местами
-function renderPlace(place) {
+function createCard(place) {
   const newPlace = galleryTemplateItem.content.cloneNode(true)
   const galleryItemText = newPlace.querySelector('.gallery__text')
   const galleryItemImage = newPlace.querySelector('.gallery__image')
@@ -73,22 +73,27 @@ function renderPlace(place) {
   galleryItemDeleteBtn.addEventListener('click', deletePlace)
   galleryItemLikeBtn.addEventListener('click', setLike)
   galleryItemImage.addEventListener('click', () => maximizePlace(galleryItemImage.src, galleryItemImage.alt, galleryItemText.textContent))
+  return newPlace
+}
+
+function injectPlace(item) {
+  const newPlace = createCard(item)
   gallery.prepend(newPlace)
 }
 
-places.forEach(renderPlace)
+places.forEach(injectPlace)
 
 // открывает модальные окна
 function openModal(modalElement) {
   modalElement.classList.add('modal_active')
-  if (modalElement === formBioElement) {
-    nameInput.value = profileName.textContent
-    descInput.value = profileDesc.textContent
-  }
   page.classList.add('page_no-scroll')
 }
 
-profileEditBtn.addEventListener('click', () => openModal(formBioElement))
+profileEditBtn.addEventListener('click', () => {
+  nameInput.value = profileName.textContent
+  descInput.value = profileDesc.textContent
+  openModal(formBioElement)
+})
 addNewPictureBtn.addEventListener('click', () => openModal(formCardElement))
 
 // закрывает модальные окна
@@ -135,8 +140,8 @@ function createNewPlace(event) {
     name: titleInput.value,
     link: pictureInput.value,
   }
-  places.push(newItem)
-  renderPlace(newItem)
+  const newPlaces = places.slice()
+  injectPlace(newItem)
   closeModal(formCardElement)
   titleInput.value = ''
   pictureInput.value = ''
