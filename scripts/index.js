@@ -140,7 +140,6 @@ function createNewPlace(event) {
     name: titleInput.value,
     link: pictureInput.value,
   }
-  const newPlaces = places.slice()
   injectPlace(newItem)
   closeModal(formCardElement)
   titleInput.value = ''
