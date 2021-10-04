@@ -138,6 +138,8 @@ function createNewPlace(event) {
   places.push(newItem)
   renderPlace(newItem)
   modalOff(formCardElement)
+  titleInput.value = ''
+  pictureInput.value = ''
 }
 
 formCardElement.addEventListener('submit', createNewPlace)
