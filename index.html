@@ -30,8 +30,7 @@
         </div>
       </section>
       <section class="gallery" aria-label="Фотографии пользователя">
-        <ul class="gallery__grid">
-        </ul>
+        <ul class="gallery__grid"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -58,6 +57,15 @@
         <input aria-label="Поле ввода для адреса картинки" type="text" name="card-input-picture" class="modal__input modal__input_field_picture" placeholder="Ссылочка на картиночку">
         <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Создать</button>
       </form>
+    </div>
+  </section>
+  <section class="modal modal_type_picture page__modal">
+    <div class="modal__container modal__container_picture">
+      <button type="button" class="modal__close-btn"></button>
+      <figure class="modal__figure">
+        <img src="" alt="" class="modal__image">
+        <figcaption class="modal__caption"></figcaption>
+      </figure>
     </div>
   </section>
   <template class="gallery__item-template">

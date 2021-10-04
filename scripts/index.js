@@ -10,7 +10,7 @@ const profileName = document.querySelector('.profile__name')
 const profileDesc = document.querySelector('.profile__desc')
 
 // Фон модалок
-const modal = document.querySelectorAll('.modal')
+const modals = document.querySelectorAll('.modal')
 
 // Редактирование био
 const formBioElement = document.querySelector('.modal_type_bio')
@@ -26,43 +26,53 @@ const pictureInput = formCardElement.querySelector('.modal__input_field_picture'
 const profileEditBtn = document.querySelector('.profile__edit-btn')
 const addNewPictureBtn = document.querySelector('.profile__add-btn')
 const modalCloseBtn = document.querySelectorAll('.modal__close-btn')
-const deleteItemBtn = document.querySelectorAll('.gallery__delete-btn')
+
+// Просмотр картинки
+const maxModal = document.querySelector('.modal_type_picture')
+const maxModalPicture = maxModal.querySelector('.modal__image')
+const maxModalCaption = maxModal.querySelector('.modal__caption')
 
 // Набор карточек
 const places = [
   {
     name: '💙 Зубчатки',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/1.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024288/1.jpg'
   },
   {
     name: '🗿 Курум',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899136/mesto/3.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024290/2.jpg'
   },
   {
     name: '🏝 Джабык',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/4.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024291/3.jpg'
   },
   {
     name: '🏞 Река Агидель',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/6.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/4.jpg'
   },
   {
     name: '🏔 Ямантау',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899135/mesto/7.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/5.jpg'
   },
   {
     name: '🌊 Тургояк',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1632899133/mesto/8.jpg'
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/6.jpg'
   }
 ];
 
 // создает карточки с местами
 function renderPlace(place) {
   const newPlace = galleryTemplateItem.content.cloneNode(true)
-  newPlace.querySelector('.gallery__text').textContent = place.name
-  newPlace.querySelector('.gallery__image').setAttribute('src', place.link)
-  newPlace.querySelector('.like').addEventListener('click', like)
-  newPlace.querySelector('.gallery__delete-btn').addEventListener('click', deletePlace)
+  const galleryItemText = newPlace.querySelector('.gallery__text')
+  const galleryItemImage = newPlace.querySelector('.gallery__image')
+  const galleryItemDeleteBtn = newPlace.querySelector('.gallery__delete-btn')
+  const galleryItemLikeBtn = newPlace.querySelector('.like')
+  galleryItemText.textContent = place.name
+  galleryItemImage.alt = place.name
+  galleryItemImage.src = place.link
+  galleryItemDeleteBtn.addEventListener('click', deletePlace)
+  galleryItemLikeBtn.addEventListener('click', setLike)
+  galleryItemImage.addEventListener('click', () => maximizePlace(galleryItemImage.src, galleryItemImage.alt, galleryItemText.textContent))
   gallery.prepend(newPlace)
 }
 
@@ -87,7 +97,8 @@ function modalOff(modalElement) {
   page.classList.remove('page_no-scroll')
 }
 
-modal.forEach((item) => {
+// листнеры для всех модальных окон
+modals.forEach((item) => {
   item.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
       modalOff(event.target)
@@ -132,7 +143,7 @@ function createNewPlace(event) {
 formCardElement.addEventListener('submit', createNewPlace)
 
 // ставит лайк
-function like(event) {
+function setLike(event) {
   event.target.classList.toggle('like_active')
 }
 
@@ -140,4 +151,12 @@ function like(event) {
 function deletePlace(event) {
   const place = event.currentTarget.closest('.gallery__item')
   place.remove()
+}
+
+// открывает картинку
+function maximizePlace(image, alt, caption) {
+  modalOn(maxModal)
+  maxModalPicture.src = image
+  maxModalPicture.alt = alt
+  maxModalCaption.textContent = caption
 }
