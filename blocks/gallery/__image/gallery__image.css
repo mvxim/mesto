@@ -1,7 +1,6 @@
 .gallery__image {
+  height: 100%;
   width: 100%;
-  height: calc(100% - 85px);
-  min-height: 282px;
   object-fit: cover;
   object-position: center center;
   cursor: pointer;

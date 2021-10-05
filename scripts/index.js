@@ -166,3 +166,5 @@ function maximizePlace(image, alt, caption) {
   maxModalPicture.alt = alt
   maxModalCaption.textContent = caption
 }
+
+// регулирует высоту карточек
