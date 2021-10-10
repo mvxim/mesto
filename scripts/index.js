@@ -58,7 +58,7 @@ const places = [
     name: '🌊 Тургояк',
     link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/6.jpg'
   }
-];
+]
 
 // создает карточки с местами
 function createCard(place) {
@@ -166,5 +166,3 @@ function maximizePlace(image, alt, caption) {
   maxModalPicture.alt = alt
   maxModalCaption.textContent = caption
 }
-
-// регулирует высоту карточек

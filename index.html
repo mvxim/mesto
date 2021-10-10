@@ -20,13 +20,15 @@
     <main class="main page__main">
       <section class="profile main__profile" aria-label="Профиль пользователя">
         <div class="profile__bio">
-          <img src="./images/profile/avatar-gem.png" alt="Фотография профиля пользователя" class="profile__avatar">
+          <img src="./images/profile/avatar-gem.png"
+               alt="Фотография профиля пользователя" class="profile__avatar">
           <div class="profile__details">
             <div class="profile__row">
               <h1 class="profile__name">Южный Урал</h1>
               <button type="button" class="button profile__edit-btn"></button>
             </div>
-            <p class="profile__desc">Красоты Южного Урала и восточной Башкирии</p>
+            <p class="profile__desc">Красоты Южного Урала и восточной Башкирии
+            </p>
           </div>
           <button type="button" class="button profile__add-btn"></button>
         </div>
@@ -39,51 +41,61 @@
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
   </div>
-  <section class="modal modal_type_bio page__modal" aria-label="Форма ввода имени и описания профиля">
+  <section class="modal modal_type_bio page__modal modal_active"
+           aria-label="Форма ввода имени и описания профиля">
     <div class="modal__container">
       <button type="button" class="modal__close-btn"></button>
       <form name="bio-form" class="modal__form">
         <h2 class="modal__title">Редактировать профиль</h2>
         <input aria-label="Поле ввода для имени"
                type="text"
-               name="bio-input-name"
+               name="bio-field-name"
                class="modal__input modal__input_field_name"
                placeholder="Ваше имя">
+        <span class="modal__error modal__error_field_name"></span>
         <input aria-label="Поле ввода для описания"
                type="text"
                name="bio-input-desc"
                class="modal__input modal__input_field_desc"
                placeholder="Расскажите о себе">
-        <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Сохранить
+        <span class="modal__error modal__error_field_desc"></span>
+        <button aria-label="Кнопка сохранения имени и описания" type="submit"
+                class="button modal__button">Сохранить
         </button>
       </form>
     </div>
   </section>
-  <section class="modal modal_type_card page__modal" aria-label="Форма ввода параметров для добавления новой карточки">
+  <section class="modal modal_type_card page__modal"
+           aria-label="Форма ввода параметров для добавления новой карточки">
     <div class="modal__container">
       <button type="button" class="modal__close-btn"></button>
       <form name="card-form" class="modal__form">
         <h2 class="modal__title">Новое место</h2>
         <input aria-label="Поле ввода для названия карточки"
                type="text"
-               name="card-input-title"
+               name="card-field-title"
                class="modal__input modal__input_field_title"
                placeholder="Название">
+        <span class="modal__error modal__error_field_title"></span>
         <input aria-label="Поле ввода для адреса картинки"
                type="text"
-               name="card-input-picture"
+               name="card-field-picture"
                class="modal__input modal__input_field_picture"
                placeholder="Ссылочка на картиночку">
-        <button aria-label="Кнопка сохранения имени и описания" type="submit" class="button modal__button">Создать
+        <span class="modal__error modal__error_field_picture"></span>
+        <button aria-label="Кнопка сохранения имени и описания" type="submit"
+                class="button modal__button">Создать
         </button>
       </form>
     </div>
   </section>
-  <section class="modal modal_type_picture page__modal" aria-label="Полноэкранный просмотр картинки">
+  <section class="modal modal_type_picture page__modal"
+           aria-label="Полноэкранный просмотр картинки">
     <div class="modal__container modal__container_picture">
       <button type="button" class="modal__close-btn"></button>
       <figure class="modal__figure">
-        <img src="https://placekitten.com/1280/720" alt="Теплый пушистый котенок" class="modal__image">
+        <img src="https://placekitten.com/1280/720"
+             alt="Теплый пушистый котенок" class="modal__image">
         <figcaption class="modal__caption"></figcaption>
       </figure>
     </div>
@@ -95,7 +107,6 @@
           <img class="gallery__image">
         </div>
       </div>
-
       <button type="button" class="delete gallery__delete-btn"></button>
       <div class="gallery__caption">
         <p class="gallery__text"></p>
@@ -104,6 +115,7 @@
     </li>
   </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validation.js"></script>
 </body>
 
 </html>

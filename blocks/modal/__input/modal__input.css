@@ -1,14 +1,10 @@
 .modal__input {
+
   width: 100%;
   border: none;
-  margin-bottom: 30px;
-  padding-bottom: 13px;
+  padding: 0 0 13px 0;
   border-bottom: 1px solid hsla(0, 0%, 0%, .2);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
-}
-
-.modal__input:last-of-type {
-  margin-bottom: 48px;
 }
