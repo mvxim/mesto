@@ -22,8 +22,8 @@ const hideInputError = (formElement, inputElement, config) => {
 
 // проверяет, можно ли отправлять форму или есть невалидные поля
 const hasInvalidInput = (inputList) => {
-  return inputList.some((inputList) => {
-    return !inputList.validity.valid || inputList.value === '';
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid || inputElement.value === '';
   });
 };
 

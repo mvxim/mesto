@@ -87,6 +87,11 @@ places.forEach(injectPlace)
 function openModal(modalElement) {
   modalElement.classList.add('modal_active')
   page.classList.add('page_no-scroll')
+  setKeyboardListener()
+}
+
+function setKeyboardListener() {
+  document.addEventListener('keydown', closeModalOnEscape)
 }
 
 profileEditBtn.addEventListener('click', () => {
@@ -100,6 +105,20 @@ addNewPictureBtn.addEventListener('click', () => openModal(formCardElement))
 function closeModal(modalElement) {
   modalElement.classList.remove('modal_active')
   page.classList.remove('page_no-scroll')
+  
+}
+
+function removeKeyboardListener() {
+  document.removeEventListener('keydown', closeModalOnEscape)
+}
+
+
+function closeModalOnEscape(event) {
+  const activeModal = document.querySelector('.modal_active')
+  if (event.key === 'Escape') {
+    closeModal(activeModal)
+    removeKeyboardListener()
+  }
 }
 
 // листнеры для всех модальных окон
