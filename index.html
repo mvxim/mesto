@@ -51,13 +51,19 @@
                type="text"
                name="bio-field-name"
                class="modal__input modal__input_field_name"
-               placeholder="Ваше имя">
+               id="field_name"
+               placeholder="Ваше имя"
+               minlength="2"
+               maxlength="40">
         <span class="modal__error modal__error_field_name"></span>
         <input aria-label="Поле ввода для описания"
                type="text"
-               name="bio-input-desc"
+               name="bio-field-desc"
                class="modal__input modal__input_field_desc"
-               placeholder="Расскажите о себе">
+               id="field_desc"
+               placeholder="Расскажите о себе"
+               minlength="2"
+               maxlength="200">
         <span class="modal__error modal__error_field_desc"></span>
         <button aria-label="Кнопка сохранения имени и описания" type="submit"
                 class="button modal__button">Сохранить
@@ -75,12 +81,16 @@
                type="text"
                name="card-field-title"
                class="modal__input modal__input_field_title"
-               placeholder="Название">
+               id="field_title"
+               placeholder="Название"
+               minlength="2"
+               maxlength="30">
         <span class="modal__error modal__error_field_title"></span>
         <input aria-label="Поле ввода для адреса картинки"
                type="text"
                name="card-field-picture"
                class="modal__input modal__input_field_picture"
+               id="field_picture"
                placeholder="Ссылочка на картиночку">
         <span class="modal__error modal__error_field_picture"></span>
         <button aria-label="Кнопка сохранения имени и описания" type="submit"

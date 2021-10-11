@@ -3,8 +3,7 @@
   font-size: 12px;
   line-height: 1.21;
   margin: 5px 0 12px;
-  height: 12px;
-  align-self: left;
+  min-height: 12px;
   color: hsla(0, 100%, 50%, 1);
-;
+  transition: .3s;
 }
