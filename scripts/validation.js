@@ -13,7 +13,7 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
   errorElement.textContent = errorMessage;
 };
 
-// убирает текст ошибки и
+// убирает текст ошибки и возвращает полю обычный цвет
 const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.modal__error_${inputElement.id}`);
   inputElement.classList.remove(config.inputErrorClass);
@@ -23,7 +23,7 @@ const hideInputError = (formElement, inputElement, config) => {
 // проверяет, можно ли отправлять форму или есть невалидные поля
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputList) => {
-    return !inputList.validity.valid;
+    return !inputList.validity.valid || inputList.value === '';
   });
 };
 
@@ -51,6 +51,7 @@ const checkInputValidity = (formElement, inputElement, config) => {
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, config);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, config);
@@ -70,6 +71,6 @@ const enableValidation = (config) => {
   });
 };
 
-// запускаем валидацию для всех форм страницы
+// запускает валидацию для всех форм страницы
 enableValidation(config);
 
