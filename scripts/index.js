@@ -32,34 +32,6 @@ const maxModal = document.querySelector('.modal_type_picture')
 const maxModalPicture = maxModal.querySelector('.modal__image')
 const maxModalCaption = maxModal.querySelector('.modal__caption')
 
-// Набор карточек
-const places = [
-  {
-    name: '💙 Зубчатки',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024288/1.jpg'
-  },
-  {
-    name: '🗿 Курум',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024290/2.jpg'
-  },
-  {
-    name: '🏝 Джабык',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024291/3.jpg'
-  },
-  {
-    name: '🏞 Река Агидель',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/4.jpg'
-  },
-  {
-    name: '🏔 Ямантау',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/5.jpg'
-  },
-  {
-    name: '🌊 Тургояк',
-    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/6.jpg'
-  }
-]
-
 // создает карточки с местами
 function createCard(place) {
   const newPlace = galleryTemplateItem.content.cloneNode(true)
@@ -70,9 +42,9 @@ function createCard(place) {
   galleryItemText.textContent = place.name
   galleryItemImage.alt = place.name
   galleryItemImage.src = place.link
-  galleryItemDeleteBtn.addEventListener('click', deletePlace)
-  galleryItemLikeBtn.addEventListener('click', setLike)
-  galleryItemImage.addEventListener('click', () => maximizePlace(galleryItemImage.src, galleryItemImage.alt, galleryItemText.textContent))
+  galleryItemDeleteBtn.addEventListener('mousedown', deletePlace)
+  galleryItemLikeBtn.addEventListener('mousedown', setLike)
+  galleryItemImage.addEventListener('mousedown', () => maximizePlace(galleryItemImage.src, galleryItemImage.alt, galleryItemText.textContent))
   return newPlace
 }
 
@@ -94,18 +66,18 @@ function setKeyboardListener() {
   document.addEventListener('keydown', closeModalOnEscape)
 }
 
-profileEditBtn.addEventListener('click', () => {
+profileEditBtn.addEventListener('mousedown', () => {
   nameInput.value = profileName.textContent
   descInput.value = profileDesc.textContent
   openModal(formBioElement)
 })
-addNewPictureBtn.addEventListener('click', () => openModal(formCardElement))
+addNewPictureBtn.addEventListener('mousedown', () => openModal(formCardElement))
 
 // закрывает модальные окна
 function closeModal(modalElement) {
   modalElement.classList.remove('modal_active')
   page.classList.remove('page_no-scroll')
-  
+  removeKeyboardListener()
 }
 
 function removeKeyboardListener() {
@@ -117,13 +89,12 @@ function closeModalOnEscape(event) {
   const activeModal = document.querySelector('.modal_active')
   if (event.key === 'Escape') {
     closeModal(activeModal)
-    removeKeyboardListener()
   }
 }
 
 // листнеры для всех модальных окон
 modals.forEach((item) => {
-  item.addEventListener('click', (event) => {
+  item.addEventListener('mousedown', (event) => {
     if (event.target === event.currentTarget) {
       closeModal(event.target)
     }
@@ -131,10 +102,17 @@ modals.forEach((item) => {
 })
 
 modalCloseBtns.forEach((item) => {
-  item.addEventListener('click', () => {
+  item.addEventListener('mousedown', () => {
     closeModal(item.closest('.modal'))
   })
 })
+
+// блокирует кнопку отправки формы после первой отправки
+function disableSubmitBtton(formElement) {
+  const buttonElement = formElement.querySelector('.modal__button')
+  buttonElement.disabled = true
+  buttonElement.classList.add('modal__button_disabled')
+}
 
 // обновляет текст на странице в разделе «профиль»
 function updateProfileDetails(event) {
@@ -148,6 +126,7 @@ function updateProfileDetails(event) {
     profileDesc.textContent = descInput.value
   }
   closeModal(formBioElement)
+  disableSubmitBtton(formBioElement)
 }
 
 formBioElement.addEventListener('submit', updateProfileDetails)
@@ -163,6 +142,7 @@ function createNewPlace(event) {
   closeModal(formCardElement)
   titleInput.value = ''
   pictureInput.value = ''
+  disableSubmitBtton(formCardElement)
 }
 
 formCardElement.addEventListener('submit', createNewPlace)
