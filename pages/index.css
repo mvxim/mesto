@@ -63,7 +63,6 @@
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/_active/modal_active.css);
 @import url(../blocks/modal/__container/modal__container.css);
-@import url(../blocks/modal/__container/_picture/modal__container_picture.css);
 @import url(../blocks/modal/__figure/modal__figure.css);
 @import url(../blocks/modal/__caption/modal__caption.css);
 @import url(../blocks/modal/__image/modal__image.css);
