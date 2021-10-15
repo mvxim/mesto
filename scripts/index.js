@@ -73,11 +73,21 @@ profileEditBtn.addEventListener('mousedown', () => {
 })
 addNewPictureBtn.addEventListener('mousedown', () => openModal(formCardElement))
 
+function resetFormOnClose(modalElement) {
+  const form = modalElement.querySelector('.modal__form')
+  const inputs = form.querySelectorAll('.modal__input')
+  inputs.forEach( (item) => {
+    hideInputError(form, item, config)
+  })
+  form.reset()
+}
+
 // закрывает модальные окна
 function closeModal(modalElement) {
   modalElement.classList.remove('modal_active')
   page.classList.remove('page_no-scroll')
   removeKeyboardListener()
+  resetFormOnClose(modalElement)
 }
 
 function removeKeyboardListener() {
