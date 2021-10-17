@@ -74,12 +74,15 @@ profileEditBtn.addEventListener('mousedown', () => {
 addNewPictureBtn.addEventListener('mousedown', () => openModal(formCardElement))
 
 function resetFormOnClose(modalElement) {
-  const form = modalElement.querySelector('.modal__form')
-  const inputs = form.querySelectorAll('.modal__input')
-  inputs.forEach( (item) => {
-    hideInputError(form, item, config)
-  })
-  form.reset()
+  if (modalElement.classList.contains('modal_type_picture')) {
+  } else {
+    const form = modalElement.querySelector('.modal__form')
+    const inputs = form.querySelectorAll('.modal__input')
+    inputs.forEach((item) => {
+      hideInputError(form, item, config)
+    })
+    form.reset()
+  }
 }
 
 // закрывает модальные окна
@@ -118,7 +121,7 @@ modalCloseBtns.forEach((item) => {
 })
 
 // блокирует кнопку отправки формы после первой отправки
-function disableSubmitBtton(formElement) {
+function disableSubmitButton(formElement) {
   const buttonElement = formElement.querySelector('.modal__button')
   buttonElement.disabled = true
   buttonElement.classList.add('modal__button_disabled')
@@ -136,7 +139,7 @@ function updateProfileDetails(event) {
     profileDesc.textContent = descInput.value
   }
   closeModal(formBioElement)
-  disableSubmitBtton(formBioElement)
+  disableSubmitButton(formBioElement)
 }
 
 formBioElement.addEventListener('submit', updateProfileDetails)
@@ -152,7 +155,7 @@ function createNewPlace(event) {
   closeModal(formCardElement)
   titleInput.value = ''
   pictureInput.value = ''
-  disableSubmitBtton(formCardElement)
+  disableSubmitButton(formCardElement)
 }
 
 formCardElement.addEventListener('submit', createNewPlace)
