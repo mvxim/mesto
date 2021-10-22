@@ -49,7 +49,6 @@ class Card {
     maxModalPicture.src = this._image
     maxModalCaption.textContent = this._title
     openModal(maxModal)
-    console.log('Success')
   }
 
   _setEventListeners() {
