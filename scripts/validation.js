@@ -1,4 +1,4 @@
-const config = {
+export const formConfig = {
   formSelector: '.modal__form',
   inputSelector: '.modal__input',
   submitButtonSelector: '.modal__button',
@@ -14,7 +14,7 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
 }
 
 // убирает текст ошибки и возвращает полю обычный цвет
-const hideInputError = (formElement, inputElement, config) => {
+export const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.modal__error_${inputElement.id}`)
   inputElement.classList.remove(config.inputErrorClass)
   errorElement.textContent = ''
@@ -27,14 +27,22 @@ const hasInvalidInput = (inputList) => {
   })
 }
 
+const disableButton = (buttonElement, config) => {
+  buttonElement.classList.add(config.inactiveButtonClass)
+  buttonElement.disabled = true
+}
+
+const enableButton = (buttonElement, config) => {
+  buttonElement.classList.remove(config.inactiveButtonClass)
+  buttonElement.disabled = false
+}
+
 // блокирует кнопку, если в форме есть невалидные поля
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass)
-    buttonElement.disabled = true
+    disableButton(buttonElement, config)
   } else {
-    buttonElement.classList.remove(config.inactiveButtonClass)
-    buttonElement.disabled = false
+    enableButton(buttonElement, config)
   }
 }
 
@@ -72,5 +80,4 @@ const enableValidation = (config) => {
 }
 
 // запускает валидацию для всех форм страницы
-enableValidation(config)
-
+enableValidation(formConfig)

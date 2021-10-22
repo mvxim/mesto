@@ -1,9 +1,38 @@
+import {cardConfig, Card} from './Card.js' //класс карточки и конфиг для него
+import {hideInputError, formConfig} from './validation.js'
+
+const places = [
+  {
+    name: '💙 Зубчатки',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024288/1.jpg',
+  },
+  {
+    name: '🗿 Курум',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024290/2.jpg',
+  },
+  {
+    name: '🏝 Джабык',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024291/3.jpg',
+  },
+  {
+    name: '🏞 Река Агидель',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/4.jpg',
+  },
+  {
+    name: '🏔 Ямантау',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/5.jpg',
+  },
+  {
+    name: '🌊 Тургояк',
+    link: 'https://res.cloudinary.com/mvxim/image/upload/v1633024286/6.jpg',
+  },
+]
+
 // Страница
 const page = document.querySelector('.page')
 
 // Галерея
 const gallery = document.querySelector('.gallery__grid')
-const galleryTemplateItem = document.querySelector('.gallery__item-template')
 
 // Имя и описание
 const profileName = document.querySelector('.profile__name')
@@ -27,36 +56,17 @@ const profileEditBtn = document.querySelector('.profile__edit-btn')
 const addNewPictureBtn = document.querySelector('.profile__add-btn')
 const modalCloseBtns = document.querySelectorAll('.modal__close-btn')
 
-// Просмотр картинки
-const maxModal = document.querySelector('.modal_type_picture')
-const maxModalPicture = maxModal.querySelector('.modal__image')
-const maxModalCaption = maxModal.querySelector('.modal__caption')
-
-// создает карточки с местами
-function createCard(place) {
-  const newPlace = galleryTemplateItem.content.cloneNode(true)
-  const galleryItemText = newPlace.querySelector('.gallery__text')
-  const galleryItemImage = newPlace.querySelector('.gallery__image')
-  const galleryItemDeleteBtn = newPlace.querySelector('.gallery__delete-btn')
-  const galleryItemLikeBtn = newPlace.querySelector('.like')
-  galleryItemText.textContent = place.name
-  galleryItemImage.alt = place.name
-  galleryItemImage.src = place.link
-  galleryItemDeleteBtn.addEventListener('mousedown', deletePlace)
-  galleryItemLikeBtn.addEventListener('mousedown', setLike)
-  galleryItemImage.addEventListener('mousedown', () => maximizePlace(galleryItemImage.src, galleryItemImage.alt, galleryItemText.textContent))
-  return newPlace
-}
-
-function injectPlace(item) {
-  const newPlace = createCard(item)
-  gallery.prepend(newPlace)
+const injectPlace = (item) => {
+  const newPlace = new Card(item, cardConfig)
+  const newPlaceElement = newPlace.assembleCard()
+  gallery.prepend(newPlaceElement)
 }
 
 places.forEach(injectPlace)
 
+
 // открывает модальные окна
-function openModal(modalElement) {
+export function openModal(modalElement) {
   modalElement.classList.add('modal_active')
   page.classList.add('page_no-scroll')
   setKeyboardListener()
@@ -79,7 +89,7 @@ function resetFormOnClose(modalElement) {
     const form = modalElement.querySelector('.modal__form')
     const inputs = form.querySelectorAll('.modal__input')
     inputs.forEach((item) => {
-      hideInputError(form, item, config)
+      hideInputError(form, item, formConfig)
     })
     form.reset()
   }
@@ -97,7 +107,7 @@ function removeKeyboardListener() {
   document.removeEventListener('keydown', closeModalOnEscape)
 }
 
-
+// листнеры для всех модальных окон
 function closeModalOnEscape(event) {
   const activeModal = document.querySelector('.modal_active')
   if (event.key === 'Escape') {
@@ -105,7 +115,6 @@ function closeModalOnEscape(event) {
   }
 }
 
-// листнеры для всех модальных окон
 modals.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
     if (event.target === event.currentTarget) {
@@ -127,7 +136,7 @@ function disableSubmitButton(formElement) {
   buttonElement.classList.add('modal__button_disabled')
 }
 
-// обновляет текст на странице в разделе «профиль»
+// обрабатывает отправку формы редактирования профиля
 function updateProfileDetails(event) {
   event.preventDefault()
   if (nameInput.value === '') {
@@ -144,7 +153,7 @@ function updateProfileDetails(event) {
 
 formBioElement.addEventListener('submit', updateProfileDetails)
 
-// добавляет новую карточку
+// обрабатывает отправку формы создания карточки
 function createNewPlace(event) {
   event.preventDefault()
   const newItem = {
@@ -159,22 +168,3 @@ function createNewPlace(event) {
 }
 
 formCardElement.addEventListener('submit', createNewPlace)
-
-// ставит лайк
-function setLike(event) {
-  event.target.classList.toggle('like_active')
-}
-
-// удаляет карточку
-function deletePlace(event) {
-  const place = event.currentTarget.closest('.gallery__item')
-  place.remove()
-}
-
-// открывает картинку
-function maximizePlace(image, alt, caption) {
-  openModal(maxModal)
-  maxModalPicture.src = image
-  maxModalPicture.alt = alt
-  maxModalCaption.textContent = caption
-}
