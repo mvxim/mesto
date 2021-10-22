@@ -14,20 +14,21 @@
     <header class="header page__header">
       <a href="#" class="header__link">
         <img src="./images/logo/logo_color_white.svg"
-             alt="Логотип сервиса «Место»." class="header__logo"></a>
+             alt="Логотип сервиса «Место»."
+             class="header__logo"></a>
     </header>
     <main class="main page__main">
       <section class="profile main__profile" aria-label="Профиль пользователя">
         <div class="profile__bio">
           <img src="./images/profile/avatar-gem.png"
-               alt="Фотография профиля пользователя" class="profile__avatar">
+               alt="Фотография профиля пользователя"
+               class="profile__avatar">
           <div class="profile__details">
             <div class="profile__row">
               <h1 class="profile__name">Южный Урал</h1>
               <button type="button" class="button profile__edit-btn"></button>
             </div>
-            <p class="profile__desc">Красоты Южного Урала и восточной Башкирии
-            </p>
+            <p class="profile__desc">Красоты Южного Урала и восточной Башкирии </p>
           </div>
           <button type="button" class="button profile__add-btn"></button>
         </div>
@@ -46,18 +47,28 @@
       <button type="button" class="modal__close-btn"></button>
       <form name="bio-form" class="modal__form">
         <h2 class="modal__title">Редактировать профиль</h2>
-        <input aria-label="Поле ввода для имени" type="text"
+        <input aria-label="Поле ввода для имени"
+               type="text"
                name="bio-field-name"
-               class="modal__input modal__input_field_name" id="field_name"
-               placeholder="Ваше имя" minlength="2" maxlength="40">
+               class="modal__input modal__input_field_name"
+               id="field_name"
+               placeholder="Ваше имя"
+               minlength="2"
+               maxlength="40">
         <span class="modal__error modal__error_field_name"></span> <input
-               aria-label="Поле ввода для описания" type="text"
-               name="bio-field-desc"
-               class="modal__input modal__input_field_desc" id="field_desc"
-               placeholder="Расскажите о себе" minlength="2" maxlength="200">
+              aria-label="Поле ввода для описания"
+              type="text"
+              name="bio-field-desc"
+              class="modal__input modal__input_field_desc"
+              id="field_desc"
+              placeholder="Расскажите о себе"
+              minlength="2"
+              maxlength="200">
         <span class="modal__error modal__error_field_desc"></span>
-        <button aria-label="Кнопка сохранения имени и описания" type="submit"
-                class="button modal__button">Сохранить </button>
+        <button aria-label="Кнопка сохранения имени и описания"
+                type="submit"
+                class="button modal__button">Сохранить
+        </button>
       </form>
     </div>
   </section>
@@ -67,18 +78,26 @@
       <button type="button" class="modal__close-btn"></button>
       <form name="card-form" class="modal__form">
         <h2 class="modal__title">Новое место</h2>
-        <input aria-label="Поле ввода для названия карточки" type="text"
+        <input aria-label="Поле ввода для названия карточки"
+               type="text"
                name="card-field-title"
-               class="modal__input modal__input_field_title" id="field_title"
-               placeholder="Название" minlength="2" maxlength="30">
+               class="modal__input modal__input_field_title"
+               id="field_title"
+               placeholder="Название"
+               minlength="2"
+               maxlength="30">
         <span class="modal__error modal__error_field_title"></span> <input
-               aria-label="Поле ввода для адреса картинки" type="url"
-               name="card-field-picture"
-               class="modal__input modal__input_field_picture"
-               id="field_picture" placeholder="Ссылочка на картиночку">
+              aria-label="Поле ввода для адреса картинки"
+              type="url"
+              name="card-field-picture"
+              class="modal__input modal__input_field_picture"
+              id="field_picture"
+              placeholder="Ссылочка на картиночку">
         <span class="modal__error modal__error_field_picture"></span>
-        <button aria-label="Кнопка сохранения имени и описания" type="submit"
-                class="button modal__button">Создать </button>
+        <button aria-label="Кнопка сохранения имени и описания"
+                type="submit"
+                class="button modal__button">Создать
+        </button>
       </form>
     </div>
   </section>
@@ -87,7 +106,8 @@
     <figure class="modal__figure">
       <button type="button" class="modal__close-btn"></button>
       <img src="https://placekitten.com/1280/720"
-           alt="Теплый пушистый котенок" class="modal__image">
+           alt="Теплый пушистый котенок"
+           class="modal__image">
       <figcaption class="modal__caption"></figcaption>
     </figure>
   </section>
@@ -105,9 +125,9 @@
       </div>
     </li>
   </template>
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/index.js"></script>
-  <script src="./scripts/validation.js"></script>
+  <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/Card.js" type="module"></script>
+  <script src="./scripts/FormValidator.js" type="module"></script>
 </body>
 
 </html>
