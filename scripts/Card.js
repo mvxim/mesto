@@ -1,18 +1,9 @@
 import {openModal} from './index.js'
 
-const cardConfig = {
-  templateElement: '.gallery__item-template',
-  cardElement: '.gallery__item',
-  titleElement: '.gallery__text',
-  imageElement: '.gallery__image',
-  deleteButtonElement: '.delete',
-  likeButtonElement: '.like',
-}
-
 class Card {
-  constructor(data, cardConfig) {
-    this._templateElement = cardConfig.templateElement
-    this._cardElement = cardConfig.cardElement
+  constructor(data) {
+    this._templateElement = '.gallery__item-template'
+    this._cardElement = '.gallery__item'
     this._title = data.name
     this._image = data.link
   }
@@ -27,19 +18,19 @@ class Card {
   assembleCard() {
     this._card = this._getTemplateElement()
     this._setEventListeners()
-    this._card.querySelector(cardConfig.titleElement).textContent = this._title
-    this._card.querySelector(cardConfig.imageElement).src = this._image
-    this._card.querySelector(cardConfig.imageElement).alt = this._title
+    this._card.querySelector('.gallery__text').textContent = this._title
+    this._card.querySelector('.gallery__image').src = this._image
+    this._card.querySelector('.gallery__image').alt = this._title
     return this._card
   }
 
   _setLike() {
-    this._card.querySelector(cardConfig.likeButtonElement)
+    this._card.querySelector('.like')
     .classList.toggle('like_active')
   }
 
   _deletePlace() {
-    document.querySelector(cardConfig.cardElement).remove()
+    document.querySelector('.gallery__item').remove()
   }
 
   _maximizePlaceImage() {
@@ -47,24 +38,25 @@ class Card {
     const maxModalPicture = maxModal.querySelector('.modal__image')
     const maxModalCaption = maxModal.querySelector('.modal__caption')
     maxModalPicture.src = this._image
+    maxModalPicture.alt = `Фотография места. Название: ${this._title}`
     maxModalCaption.textContent = this._title
     openModal(maxModal)
   }
 
   _setEventListeners() {
-    this._card.querySelector(cardConfig.likeButtonElement)
+    this._card.querySelector('.like')
     .addEventListener('mousedown', () => {
       this._setLike()
     })
-    this._card.querySelector(cardConfig.deleteButtonElement)
+    this._card.querySelector('.delete')
     .addEventListener('mousedown', () => {
       this._deletePlace()
     })
-    this._card.querySelector(cardConfig.imageElement)
+    this._card.querySelector('.gallery__image')
     .addEventListener('mousedown', () => {
       this._maximizePlaceImage()
     })
   }
 }
 
-export {cardConfig, Card}
+export {Card}

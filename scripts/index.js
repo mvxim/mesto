@@ -1,7 +1,7 @@
-import {cardConfig, Card} from './Card.js'
+import {Card} from './Card.js'
 import {formConfig, FormValidator} from './FormValidator.js'
 
-
+// Спасибо! ^^
 const places = [
   {
     name: '💙 Зубчатки',
@@ -56,12 +56,10 @@ const pictureInput = formCardElement.querySelector('.modal__input_field_picture'
 // Кнопки
 const profileEditBtn = document.querySelector('.profile__edit-btn')
 const addNewPictureBtn = document.querySelector('.profile__add-btn')
-const modalCloseBtns = document.querySelectorAll('.modal__close-btn')
-
 
 // собирает и добавляет карточки на страницу
 const injectPlace = (item) => {
-  const newPlace = new Card(item, cardConfig)
+  const newPlace = new Card(item)
   const newPlaceElement = newPlace.assembleCard()
   gallery.prepend(newPlaceElement)
 }
@@ -108,32 +106,20 @@ function closeModalOnEscape(event) {
   }
 }
 
+// спасибо! Так и правда короче, и логичнее :)
 modals.forEach((item) => {
-  item.addEventListener('mousedown', (event) => {
-    if (event.target === event.currentTarget) {
-      closeModal(event.target)
+  item.addEventListener('mousedown', (e) => {
+    if (e.target.classList.contains('modal') || e.target.classList.contains('modal__close-btn')) {
+      closeModal(item)
     }
   })
 })
 
-modalCloseBtns.forEach((item) => {
-  item.addEventListener('mousedown', () => {
-    closeModal(item.closest('.modal'))
-  })
-})
-
-
 // обрабатывает отправку формы редактирования профиля
 function updateProfileDetails(event) {
   event.preventDefault()
-  if (nameInput.value === '') {
-  } else {
-    profileName.textContent = nameInput.value
-  }
-  if (descInput.value === '') {
-  } else {
-    profileDesc.textContent = descInput.value
-  }
+  profileName.textContent = nameInput.value
+  profileDesc.textContent = descInput.value
   closeModal(formBioElement)
 }
 
@@ -149,8 +135,7 @@ function createNewPlace(event) {
   }
   injectPlace(newItem)
   closeModal(formCardElement)
-  titleInput.value = ''
-  pictureInput.value = ''
+  document.forms['card-form'].reset()
 }
 
 formCardElement.addEventListener('submit', createNewPlace)
