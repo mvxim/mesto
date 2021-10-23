@@ -1,5 +1,5 @@
-import {Card} from './Card.js'
-import {formConfig, FormValidator} from './FormValidator.js'
+import { Card } from './Card.js'
+import { formConfig, FormValidator } from './FormValidator.js'
 
 // Спасибо! ^^
 const places = [
@@ -35,6 +35,7 @@ const page = document.querySelector('.page')
 
 // Галерея
 const gallery = document.querySelector('.gallery__grid')
+const galleryItemTemplate = '.gallery__item-template'
 
 // Имя и описание
 const profileName = document.querySelector('.profile__name')
@@ -59,7 +60,7 @@ const addNewPictureBtn = document.querySelector('.profile__add-btn')
 
 // собирает и добавляет карточки на страницу
 const injectPlace = (item) => {
-  const newPlace = new Card(item)
+  const newPlace = new Card(item, galleryItemTemplate)
   const newPlaceElement = newPlace.assembleCard()
   gallery.prepend(newPlaceElement)
 }
@@ -153,4 +154,4 @@ const enableValidation = (config) => {
 enableValidation(formConfig)
 
 
-export {openModal}
+export { openModal }

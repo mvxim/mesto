@@ -1,8 +1,8 @@
-import {openModal} from './index.js'
+import { openModal } from './index.js'
 
 class Card {
-  constructor(data) {
-    this._templateElement = '.gallery__item-template'
+  constructor(data, templateClassName) {
+    this._templateElement = templateClassName
     this._cardElement = '.gallery__item'
     this._title = data.name
     this._image = data.link
@@ -10,9 +10,9 @@ class Card {
 
   _getTemplateElement() {
     return document
-    .querySelector(this._templateElement)
-    .content
-    .querySelector(this._cardElement).cloneNode(true)
+      .querySelector(this._templateElement)
+      .content
+      .querySelector(this._cardElement).cloneNode(true)
   }
 
   assembleCard() {
@@ -26,7 +26,7 @@ class Card {
 
   _setLike() {
     this._card.querySelector('.like')
-    .classList.toggle('like_active')
+      .classList.toggle('like_active')
   }
 
   _deletePlace() {
@@ -45,18 +45,18 @@ class Card {
 
   _setEventListeners() {
     this._card.querySelector('.like')
-    .addEventListener('mousedown', () => {
-      this._setLike()
-    })
+      .addEventListener('mousedown', () => {
+        this._setLike()
+      })
     this._card.querySelector('.delete')
-    .addEventListener('mousedown', () => {
-      this._deletePlace()
-    })
+      .addEventListener('mousedown', () => {
+        this._deletePlace()
+      })
     this._card.querySelector('.gallery__image')
-    .addEventListener('mousedown', () => {
-      this._maximizePlaceImage()
-    })
+      .addEventListener('mousedown', () => {
+        this._maximizePlaceImage()
+      })
   }
 }
 
-export {Card}
+export { Card }
