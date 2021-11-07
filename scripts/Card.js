@@ -1,16 +1,19 @@
+import { PopupWithImage } from './PopupWithImage.js'
+
 export class Card {
-  constructor(data, templateClassName) {
+  constructor({ data, handleCardClick }, templateClassName) {
     this._templateElement = templateClassName
     this._cardElement = ".gallery__item"
     this._title = data.name
     this._image = data.link
+    this._handleCardClick = handleCardClick
   }
 
   _getTemplateElement() {
     return document
-        .querySelector(this._templateElement)
-        .content
-        .querySelector(this._cardElement).cloneNode(true)
+      .querySelector(this._templateElement)
+      .content
+      .querySelector(this._cardElement).cloneNode(true)
   }
 
   assembleCard() {
@@ -24,36 +27,25 @@ export class Card {
 
   _setLike() {
     this._card.querySelector(".like")
-        .classList.toggle("like_active")
+      .classList.toggle("like_active")
   }
 
   _deletePlace() {
     this._card.remove()
   }
 
-  _maximizePlaceImage() {
-    const maxModal = document.querySelector(".modal_type_picture")
-    const maxModalPicture = maxModal.querySelector(".modal__image")
-    const maxModalCaption = maxModal.querySelector(".modal__caption")
-    maxModalPicture.src = this._image
-    maxModalPicture.alt = `Фотография места. Название: ${this._title}`
-    maxModalCaption.textContent = this._title
-    // TODO: implement the handleCardClick() external method
-    maxModal.classList.add('modal_active')
-  }
-
   _setEventListeners() {
     this._card.querySelector(".like")
-        .addEventListener("mousedown", () => {
-          this._setLike()
-        })
+      .addEventListener("mousedown", () => {
+        this._setLike()
+      })
     this._card.querySelector(".delete")
-        .addEventListener("mousedown", () => {
-          this._deletePlace()
-        })
+      .addEventListener("mousedown", () => {
+        this._deletePlace()
+      })
     this._card.querySelector(".gallery__image")
-        .addEventListener("mousedown", () => {
-          this._maximizePlaceImage()
-        })
+      .addEventListener("mousedown", () => {
+        this._handleCardClick()
+      })
   }
 }

@@ -4,15 +4,16 @@ import {
   profileName,
   profileDesc,
   formBioElement,
-  bioModalSelector,
   nameInput,
   descInput,
   formCardElement,
-  cardModalSelector,
   titleInput,
   pictureInput,
   profileEditBtn,
   addNewPictureBtn,
+  bioModalSelector,
+  cardModalSelector,
+  maxModalSelector,
   places
 } from "../utils/constants.js"
 import { Section } from "./Section.js"
@@ -21,11 +22,28 @@ import {
   formConfig,
   FormValidator,
 } from "./FormValidator.js"
-import { Popup } from "./Popup.js"
+import { PopupWithImage } from './PopupWithImage.js'
+import { PopupWithForm } from './PopupWithForm.js'
+
+
+const bioModal = new PopupWithForm(bioModalSelector, (e) => {
+  e.preventDefault()
+  bioModal.close()
+})
+const cardModal = new PopupWithForm(cardModalSelector, () => {
+  e.preventDefault()
+  cardModal.close()
+})
+const maxModal = new PopupWithImage(maxModalSelector)
 
 // функция-рендерер-карточек, для использования к колбеке конструктора Section
 const renderNewCard = (place) => {
-  const newPlace = new Card(place, galleryItemTemplate)
+  const newPlace = new Card({
+    data: place,
+    handleCardClick: () => {
+      maxModal.open(place)
+    }
+  }, galleryItemTemplate)
   const newPlaceElement = newPlace.assembleCard()
   gallerySection.addItem(newPlaceElement)
 }
@@ -38,44 +56,38 @@ const gallerySection = new Section({
 }, galleryContainerSelector)
 gallerySection.renderItems()
 
-export const bioModal = new Popup(bioModalSelector)
 
 // обработка нажатия на кнопку «Редактировать»
 profileEditBtn.addEventListener("mousedown", () => {
   nameInput.value = profileName.textContent
   descInput.value = profileDesc.textContent
-  bioModal.setEventListeners()
   bioModal.open()
 })
 
-export const cardModal = new Popup(cardModalSelector)
-
-
 // обработка нажатия на кнопку «Добавить»
 addNewPictureBtn.addEventListener("mousedown", () => {
-  cardModal.setEventListeners()
   cardModal.open()
 })
 
 
 // обрабатывает отправку формы редактирования профиля
-function updateProfileDetails(event) {
-  event.preventDefault()
-  profileName.textContent = nameInput.value
-  profileDesc.textContent = descInput.value
-  bioModal.close()
-}
+// function updateProfileDetails(event) {
+//   event.preventDefault()
+//   profileName.textContent = nameInput.value
+//   profileDesc.textContent = descInput.value
+//   bioModal.close()
+// }
 
-formBioElement.addEventListener("submit", updateProfileDetails)
+// formBioElement.addEventListener("submit", updateProfileDetails)
 
 
 // обрабатывает отправку формы создания карточки
 function createNewPlace(event) {
   event.preventDefault()
-  const newItem = [{
+  const newItem = [ {
     name: titleInput.value,
     link: pictureInput.value,
-  }]
+  } ]
   const newCard = new Section({
     data: newItem, renderer: (place) => {
       renderNewCard(place)
@@ -83,7 +95,7 @@ function createNewPlace(event) {
   })
   newCard.renderItems()
   cardModal.close()
-  document.forms["card-form"].reset()
+  document.forms[ "card-form" ].reset()
 }
 
 formCardElement.addEventListener("submit", createNewPlace)

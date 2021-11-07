@@ -1,3 +1,4 @@
+
 export const places = [
   {
     name: "💙 Зубчатки",
@@ -47,10 +48,15 @@ export const descInput = formBioElement.querySelector(".modal__input_field_desc"
 export const formCardElement = document.querySelector(".modal_type_card")
 export const cardModalSelector = ".modal_type_card"
 export const titleInput = formCardElement.querySelector(
-    ".modal__input_field_title")
+  ".modal__input_field_title")
 export const pictureInput = formCardElement.querySelector(
-    ".modal__input_field_picture")
+  ".modal__input_field_picture")
+
+// Открытие карточки на весь экран
+export const maxModalSelector = ".modal_type_picture"
 
 // Кнопки
 export const profileEditBtn = document.querySelector(".profile__edit-btn")
 export const addNewPictureBtn = document.querySelector(".profile__add-btn")
+
+
