@@ -1,11 +1,11 @@
 const formConfig = {
-  modalSelector: '.modal',
-  modalCloseButtonSelector: '.modal__close-btn',
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__button',
-  inactiveButtonSelector: 'modal__button_disabled',
-  inputErrorSelector: 'modal__input_error',
+  modalSelector: ".modal",
+  modalCloseButtonSelector: ".modal__close-btn",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonSelector: "modal__button_disabled",
+  inputErrorSelector: "modal__input_error",
 }
 
 class FormValidator {
@@ -26,7 +26,7 @@ class FormValidator {
   _hideInputError(inputElement) {
     const errorTextElement = this._formElement.querySelector(`.modal__error_${inputElement.id}`)
     inputElement.classList.remove(formConfig.inputErrorSelector)
-    errorTextElement.textContent = ''
+    errorTextElement.textContent = ""
   }
 
   _resetFormOnCLose() {
@@ -48,7 +48,7 @@ class FormValidator {
 
   _hasInvalidInput() {
     return this._formInputElements.some((inputElement) => {
-      return !inputElement.validity.valid || inputElement.value === ''
+      return !inputElement.validity.valid || inputElement.value === ""
     })
   }
 
@@ -65,18 +65,18 @@ class FormValidator {
 
   _setEventListeners() {
     this._formInputElements.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement)
         this._toggleButtonState()
       })
     })
-    this._modalCloseButton.addEventListener('mousedown', () => {
+    this._modalCloseButton.addEventListener("mousedown", () => {
       this._resetFormOnCLose()
     })
   }
 
   enableValidation() {
-    this._formElement.addEventListener('submit', (e) => {
+    this._formElement.addEventListener("submit", (e) => {
       e.preventDefault()
       this._formInputElements.forEach((inputElement) => {
         this._hideInputError(inputElement)
@@ -88,4 +88,4 @@ class FormValidator {
   }
 }
 
-export {formConfig, FormValidator}
+export { formConfig, FormValidator }

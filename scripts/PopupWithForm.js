@@ -1,37 +1,37 @@
-import { Popup } from './Popup.js'
+import { Popup } from "./Popup.js"
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector)
+    this._form = this._popupElement.querySelector(".modal__form")
     this._handleFormSubmit = handleFormSubmit
-    this._boundHandleFormSubmit = this._handleFormSubmit.bind(this)
-    this._form = this._popupElement.querySelector('.modal__form')
+    this._boundGetInputValues = this._getInputValues.bind(this)
+    this._boundSubmitHandler = this._submitHandler.bind(this)
 
   }
 
   _getInputValues() {
-    // достаём все элементы полей
-    this._inputList = this._element.querySelectorAll('.modal__input')
-
-    // создаём пустой объект
+    this._inputList = this._form.querySelectorAll(".modal__input")
     this._formValues = {}
-
-    // добавляем в этот объект значения всех полей
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value
     })
-
-    // возвращаем объект значений
     return this._formValues
+  }
+
+  _submitHandler(e) {
+    e.preventDefault()
+    this._handleFormSubmit(this._boundGetInputValues())
   }
 
   setEventListeners() {
     super.setEventListeners()
-    this._form.addEventListener('submit', this._boundHandleFormSubmit)
+    this._form.addEventListener("submit", this._boundSubmitHandler)
   }
 
   close() {
-    super.close()
     this._form.reset()
+    this._form.removeEventListener("submit", this._boundSubmitHandler)
+    super.close()
   }
 }

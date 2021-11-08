@@ -1,4 +1,4 @@
-import { page } from '../utils/constants.js'
+import { page } from "../utils/constants.js"
 
 export class Popup {
   constructor(popupSelector) {
@@ -8,17 +8,17 @@ export class Popup {
   }
 
   open() {
-    this._popupElement.classList.add('modal_active')
+    this._popupElement.classList.add("modal_active")
     page.classList.add("page_no-scroll")
     this.setEventListeners()
 
   }
 
   close() {
-    this._popupElement.classList.remove('modal_active')
+    document.removeEventListener("keydown", this._boundHandleEscClose)
+    document.removeEventListener("keydown", this._boundHandleClickClose)
+    this._popupElement.classList.remove("modal_active")
     page.classList.remove("page_no-scroll")
-    document.removeEventListener('keydown', this._boundHandleEscClose)
-    document.removeEventListener('keydown', this._boundHandleClickClose)
   }
 
   _handleEscClose(e) {
@@ -29,13 +29,13 @@ export class Popup {
 
   _handleClickClose(e) {
     if (e.target.classList.contains("modal") ||
-      e.target.classList.contains("modal__close-btn")) {
+        e.target.classList.contains("modal__close-btn")) {
       this.close()
     }
   }
 
   setEventListeners() {
-    this._popupElement.addEventListener('mousedown', this._boundHandleClickClose)
-    document.addEventListener('keydown', this._boundHandleEscClose)
+    this._popupElement.addEventListener("mousedown", this._boundHandleClickClose)
+    document.addEventListener("keydown", this._boundHandleEscClose)
   }
 }

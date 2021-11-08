@@ -1,5 +1,3 @@
-import { PopupWithImage } from './PopupWithImage.js'
-
 export class Card {
   constructor({ data, handleCardClick }, templateClassName) {
     this._templateElement = templateClassName
@@ -11,9 +9,9 @@ export class Card {
 
   _getTemplateElement() {
     return document
-      .querySelector(this._templateElement)
-      .content
-      .querySelector(this._cardElement).cloneNode(true)
+        .querySelector(this._templateElement)
+        .content
+        .querySelector(this._cardElement).cloneNode(true)
   }
 
   assembleCard() {
@@ -27,7 +25,7 @@ export class Card {
 
   _setLike() {
     this._card.querySelector(".like")
-      .classList.toggle("like_active")
+        .classList.toggle("like_active")
   }
 
   _deletePlace() {
@@ -36,16 +34,16 @@ export class Card {
 
   _setEventListeners() {
     this._card.querySelector(".like")
-      .addEventListener("mousedown", () => {
-        this._setLike()
-      })
+        .addEventListener("mousedown", () => {
+          this._setLike()
+        })
     this._card.querySelector(".delete")
-      .addEventListener("mousedown", () => {
-        this._deletePlace()
-      })
+        .addEventListener("mousedown", () => {
+          this._deletePlace()
+        })
     this._card.querySelector(".gallery__image")
-      .addEventListener("mousedown", () => {
-        this._handleCardClick()
-      })
+        .addEventListener("mousedown", () => {
+          this._handleCardClick()
+        })
   }
 }

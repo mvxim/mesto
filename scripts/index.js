@@ -1,19 +1,15 @@
 import {
   galleryContainerSelector,
   galleryItemTemplate,
-  profileName,
-  profileDesc,
-  formBioElement,
   nameInput,
   descInput,
-  formCardElement,
-  titleInput,
-  pictureInput,
   profileEditBtn,
   addNewPictureBtn,
   bioModalSelector,
   cardModalSelector,
   maxModalSelector,
+  profileNameSelector,
+  profileDescSelector,
   places
 } from "../utils/constants.js"
 import { Section } from "./Section.js"
@@ -22,18 +18,37 @@ import {
   formConfig,
   FormValidator,
 } from "./FormValidator.js"
-import { PopupWithImage } from './PopupWithImage.js'
-import { PopupWithForm } from './PopupWithForm.js'
+import { PopupWithImage } from "./PopupWithImage.js"
+import { PopupWithForm } from "./PopupWithForm.js"
+import { UserInfo } from "./UserInfo.js"
 
+// ***************************************************************************
+// управление именем и информацией
 
-const bioModal = new PopupWithForm(bioModalSelector, (e) => {
-  e.preventDefault()
+// экземпляр модалки с формой био
+const bioModal = new PopupWithForm(bioModalSelector, (inputValues) => {
+  bioData.setUserInfo(inputValues)
   bioModal.close()
 })
-const cardModal = new PopupWithForm(cardModalSelector, () => {
-  e.preventDefault()
-  cardModal.close()
+
+// экземпляр UserInfo для управления разделом био на странице
+const bioData = new UserInfo({
+  nameSelector: profileNameSelector,
+  infoSelector: profileDescSelector,
 })
+
+// обработка нажатия на кнопку «Редактировать»
+profileEditBtn.addEventListener("mousedown", () => {
+  const currentBioData = bioData.getUserInfo()
+  nameInput.value = currentBioData.name
+  descInput.value = currentBioData.info
+  bioModal.open()
+})
+
+// ***************************************************************************
+//управление отображением и добавлением карточек
+
+// экземпляр модалки с картинкой
 const maxModal = new PopupWithImage(maxModalSelector)
 
 // функция-рендерер-карточек, для использования к колбеке конструктора Section
@@ -48,45 +63,20 @@ const renderNewCard = (place) => {
   gallerySection.addItem(newPlaceElement)
 }
 
-// экземпляр Section, который рисует карточки изначально
+// экземпляр Section, который рисует карточки при загрузке страницы
 const gallerySection = new Section({
   data: places, renderer: (place) => {
     renderNewCard(place)
   }
 }, galleryContainerSelector)
+
 gallerySection.renderItems()
 
-
-// обработка нажатия на кнопку «Редактировать»
-profileEditBtn.addEventListener("mousedown", () => {
-  nameInput.value = profileName.textContent
-  descInput.value = profileDesc.textContent
-  bioModal.open()
-})
-
-// обработка нажатия на кнопку «Добавить»
-addNewPictureBtn.addEventListener("mousedown", () => {
-  cardModal.open()
-})
-
-
-// обрабатывает отправку формы редактирования профиля
-// function updateProfileDetails(event) {
-//   event.preventDefault()
-//   profileName.textContent = nameInput.value
-//   profileDesc.textContent = descInput.value
-//   bioModal.close()
-// }
-
-// formBioElement.addEventListener("submit", updateProfileDetails)
-
-
-// обрабатывает отправку формы создания карточки
-function createNewPlace(event) {
-  event.preventDefault()
+// экземпляр модалки с формой карточки
+const cardModal = new PopupWithForm(cardModalSelector, (inputValues) => {
   const newItem = [ {
-    name: titleInput.value,
-    link: pictureInput.value,
+    name: inputValues["card-field-title"],
+    link: inputValues["card-field-picture"],
   } ]
   const newCard = new Section({
     data: newItem, renderer: (place) => {
@@ -95,13 +85,16 @@ function createNewPlace(event) {
   })
   newCard.renderItems()
   cardModal.close()
-  document.forms[ "card-form" ].reset()
-}
+})
 
-formCardElement.addEventListener("submit", createNewPlace)
+// обработка нажатия на кнопку «Добавить»
+addNewPictureBtn.addEventListener("mousedown", () => {
+  cardModal.open()
+})
 
 
-// включает валидацию для всех форм
+// ***************************************************************************
+// управление валидацией для всех форм
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {

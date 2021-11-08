@@ -1,4 +1,3 @@
-
 export const places = [
   {
     name: "💙 Зубчатки",
@@ -34,9 +33,9 @@ export const page = document.querySelector(".page")
 export const galleryItemTemplate = ".gallery__item-template"
 export const galleryContainerSelector = ".gallery__grid"
 
-// Имя и описание
-export const profileName = document.querySelector(".profile__name")
-export const profileDesc = document.querySelector(".profile__desc")
+// Селекторы имени и описания
+export const profileNameSelector = ".profile__name"
+export const profileDescSelector = ".profile__desc"
 
 // Редактирование био
 export const formBioElement = document.querySelector(".modal_type_bio")
@@ -48,9 +47,9 @@ export const descInput = formBioElement.querySelector(".modal__input_field_desc"
 export const formCardElement = document.querySelector(".modal_type_card")
 export const cardModalSelector = ".modal_type_card"
 export const titleInput = formCardElement.querySelector(
-  ".modal__input_field_title")
+    ".modal__input_field_title")
 export const pictureInput = formCardElement.querySelector(
-  ".modal__input_field_picture")
+    ".modal__input_field_picture")
 
 // Открытие карточки на весь экран
 export const maxModalSelector = ".modal_type_picture"
@@ -58,5 +57,3 @@ export const maxModalSelector = ".modal_type_picture"
 // Кнопки
 export const profileEditBtn = document.querySelector(".profile__edit-btn")
 export const addNewPictureBtn = document.querySelector(".profile__add-btn")
-
-
