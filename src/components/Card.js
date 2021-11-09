@@ -1,25 +1,27 @@
 export class Card {
   constructor({ data, handleCardClick }, templateClassName) {
-    this._templateElement = templateClassName
-    this._cardElement = ".gallery__item"
+    this._templateElementSelector = templateClassName
+    this._cardElementSelector = ".gallery__item"
+    this._card = this._getTemplateElement()
     this._title = data.name
     this._image = data.link
     this._handleCardClick = handleCardClick
+    this._cardText = this._card.querySelector(".gallery__text")
+    this._cardImage = this._card.querySelector(".gallery__image")
   }
 
   _getTemplateElement() {
     return document
-        .querySelector(this._templateElement)
+        .querySelector(this._templateElementSelector)
         .content
-        .querySelector(this._cardElement).cloneNode(true)
+        .querySelector(this._cardElementSelector).cloneNode(true)
   }
 
   assembleCard() {
-    this._card = this._getTemplateElement()
+    this._cardText.textContent = this._title
+    this._cardImage.src = this._image
+    this._cardImage.alt = `Фотография красивого места: ${this._title}`
     this._setEventListeners()
-    this._card.querySelector(".gallery__text").textContent = this._title
-    this._card.querySelector(".gallery__image").src = this._image
-    this._card.querySelector(".gallery__image").alt = this._title
     return this._card
   }
 

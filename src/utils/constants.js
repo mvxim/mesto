@@ -32,6 +32,16 @@ export const places = [
   },
 ]
 
+export const formConfig = {
+  modalSelector: ".modal",
+  modalCloseButtonSelector: ".modal__close-btn",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonSelector: "modal__button_disabled",
+  inputErrorSelector: "modal__input_error",
+}
+
 
 // Страница
 export const page = document.querySelector(".page")

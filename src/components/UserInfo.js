@@ -5,14 +5,14 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    const userInfoData = {}
-    userInfoData["name"] = this._userName.textContent
-    userInfoData["info"] = this._userInfo.textContent
-    return userInfoData
+    return {
+      name: this._userName.textContent,
+      info: this._userInfo.textContent
+    }
   }
 
-  setUserInfo(data) {
-    this._userName.textContent = data["bio-field-name"]
-    this._userInfo.textContent = data["bio-field-desc"]
+  setUserInfo({ "bio-field-name": name, "bio-field-desc": info }) {
+    this._userName.textContent = name
+    this._userInfo.textContent = info
   }
 }

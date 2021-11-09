@@ -1,12 +1,4 @@
-const formConfig = {
-  modalSelector: ".modal",
-  modalCloseButtonSelector: ".modal__close-btn",
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonSelector: "modal__button_disabled",
-  inputErrorSelector: "modal__input_error",
-}
+import { formConfig } from "../utils/constants.js"
 
 class FormValidator {
   constructor(form, formConfig) {

@@ -1,5 +1,6 @@
 // картинки импортируются в ./utils/constants.js
 import "./pages/index.css"
+import agidel from "./images/gallery/4.jpg"
 
 import {
   galleryContainerSelector,
@@ -55,40 +56,40 @@ profileEditBtn.addEventListener("mousedown", () => {
 const maxModal = new PopupWithImage(maxModalSelector)
 
 // функция-рендерер-карточек, для использования к колбеке конструктора Section
-const renderNewCard = (place) => {
+// !!! переименовал renderNewCard в createCard
+const createCard = (place) => {
   const newPlace = new Card({
     data: place,
     handleCardClick: () => {
       maxModal.open(place)
     }
   }, galleryItemTemplate)
-  const newPlaceElement = newPlace.assembleCard()
-  gallerySection.addItem(newPlaceElement)
+  return newPlace.assembleCard()
 }
 
 // экземпляр Section, который рисует карточки при загрузке страницы
-const gallerySection = new Section({
+// !!! переименовал gallerySection в cardList
+const cardList = new Section({
   data: places, renderer: (place) => {
-    renderNewCard(place)
+    cardList.addItem(createCard(place))
   }
 }, galleryContainerSelector)
 
-gallerySection.renderItems()
+cardList.renderItems()
 
 // экземпляр модалки с формой карточки
-const cardModal = new PopupWithForm(cardModalSelector, (inputValues) => {
-  const newItem = [ {
-    name: inputValues["card-field-title"],
-    link: inputValues["card-field-picture"],
-  } ]
-  const newCard = new Section({
-    data: newItem, renderer: (place) => {
-      renderNewCard(place)
-    }
-  })
-  newCard.renderItems()
-  cardModal.close()
-})
+const cardModal = new PopupWithForm(cardModalSelector,
+    ({
+       "card-field-title": title,
+       "card-field-picture": picture
+     }) => {
+      const newItem = {
+        name: title,
+        link: picture,
+      }
+      cardList.addItem(createCard(newItem))
+      cardModal.close()
+    })
 
 // обработка нажатия на кнопку «Добавить»
 addNewPictureBtn.addEventListener("mousedown", () => {
