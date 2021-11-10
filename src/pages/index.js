@@ -1,6 +1,4 @@
-// картинки импортируются в ./utils/constants.js
-import "./pages/index.css"
-import agidel from "./images/gallery/4.jpg"
+import "./index.css"
 
 import {
   galleryContainerSelector,
@@ -15,16 +13,16 @@ import {
   profileNameSelector,
   profileDescSelector,
   places
-} from "./utils/constants.js"
-import { Section } from "./components/Section.js"
-import { Card } from "./components/Card.js"
+} from "../utils/constants.js"
+import { Section } from "../components/Section.js"
+import { Card } from "../components/Card.js"
 import {
   formConfig,
   FormValidator,
-} from "./components/FormValidator.js"
-import { PopupWithImage } from "./components/PopupWithImage.js"
-import { PopupWithForm } from "./components/PopupWithForm.js"
-import { UserInfo } from "./components/UserInfo.js"
+} from "../components/FormValidator.js"
+import { PopupWithImage } from "../components/PopupWithImage.js"
+import { PopupWithForm } from "../components/PopupWithForm.js"
+import { UserInfo } from "../components/UserInfo.js"
 
 // ***************************************************************************
 // управление именем и информацией

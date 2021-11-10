@@ -1,4 +1,3 @@
-import { logPlugin } from "@babel/preset-env/lib/debug.js"
 import { Popup } from "./Popup.js"
 
 export class PopupWithForm extends Popup {
