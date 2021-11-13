@@ -42,30 +42,19 @@ export const formConfig = {
   inputErrorSelector: "modal__input_error",
 }
 
-
-// Страница
 export const page = document.querySelector(".page")
-
-// Галерея
-export const galleryItemTemplate = ".gallery__item-template"
-export const galleryContainerSelector = ".gallery__grid"
-
-// Селекторы имени и описания
-export const profileNameSelector = ".profile__name"
-export const profileDescSelector = ".profile__desc"
-
-// Редактирование био
 export const formBioElement = document.querySelector(".modal_type_bio")
-export const bioModalSelector = ".modal_type_bio"
 export const nameInput = formBioElement.querySelector(".modal__input_field_name")
 export const descInput = formBioElement.querySelector(".modal__input_field_desc")
-
-// Добавление карточки
-export const cardModalSelector = ".modal_type_card"
-
-// Открытие карточки на весь экран
-export const maxModalSelector = ".modal_type_picture"
-
-// Кнопки
 export const profileEditBtn = document.querySelector(".profile__edit-btn")
 export const addNewPictureBtn = document.querySelector(".profile__add-btn")
+
+export const galleryItemTemplate = ".gallery__item-template"
+export const galleryContainerSelector = ".gallery__grid"
+export const profileNameSelector = ".profile__name"
+export const profileDescSelector = ".profile__desc"
+export const bioModalSelector = ".modal_type_bio"
+export const cardModalSelector = ".modal_type_card"
+export const maxModalSelector = ".modal_type_picture"
+
+export const formValidators = {}

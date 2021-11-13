@@ -21,7 +21,7 @@ class FormValidator {
     errorTextElement.textContent = ""
   }
 
-  _resetFormOnCLose() {
+  resetForm() {
     this._formInputElements.forEach((inputElement) => {
       this._hideInputError(inputElement)
     })
@@ -50,8 +50,8 @@ class FormValidator {
 
   _checkInputValidity(inputElement) {
     inputElement.validity.valid ?
-        this._hideInputError(inputElement) : this._showInputError(inputElement,
-            inputElement.validationMessage)
+      this._hideInputError(inputElement) : this._showInputError(inputElement,
+        inputElement.validationMessage)
 
   }
 
@@ -61,9 +61,6 @@ class FormValidator {
         this._checkInputValidity(inputElement)
         this._toggleButtonState()
       })
-    })
-    this._modalCloseButton.addEventListener("mousedown", () => {
-      this._resetFormOnCLose()
     })
   }
 
