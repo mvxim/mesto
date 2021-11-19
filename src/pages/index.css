@@ -33,7 +33,9 @@
 
 /* profile */
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-btn/profile__avatar-btn.css);
 @import url(../blocks/profile/__bio/profile__bio.css);
 @import url(../blocks/profile/__details/profile__details.css);
 @import url(../blocks/profile/__row/profile__row.css);
@@ -52,8 +54,8 @@
 @import url(../blocks/gallery/__caption/gallery__caption.css);
 @import url(../blocks/gallery/__text/gallery__text.css);
 @import url(../blocks/gallery/__like-btn/gallery__like-btn.css);
+@import url(../blocks/gallery/__like-btn-counter/gallery__like-btn-counter.css);
 @import url(../blocks/gallery/__delete-btn/gallery__delete-btn.css);
-
 
 /* footer */
 @import url(../blocks/footer/footer.css);

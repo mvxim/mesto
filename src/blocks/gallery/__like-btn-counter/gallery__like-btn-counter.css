@@ -1,0 +1,9 @@
+.gallery__like-btn-counter {
+  display:     block;
+  font-size:   13px;
+  font-style:  normal;
+  font-weight: normal;
+  line-height: 1.23;
+  text-align:  center;
+  color:       #000;
+}

@@ -1,5 +1,5 @@
 export class Card {
-  constructor({ data, handleCardClick }, templateClassName) {
+  constructor({ data, handleCardClick, handleCardDelete }, templateClassName) {
     this._templateElementSelector = templateClassName
     this._cardElementSelector = ".gallery__item"
     this._card = this._getTemplateElement()
@@ -11,10 +11,7 @@ export class Card {
   }
 
   _getTemplateElement() {
-    return document
-        .querySelector(this._templateElementSelector)
-        .content
-        .querySelector(this._cardElementSelector).cloneNode(true)
+    return document.querySelector(this._templateElementSelector).content.querySelector(this._cardElementSelector).cloneNode(true)
   }
 
   assembleCard() {
@@ -26,8 +23,7 @@ export class Card {
   }
 
   _setLike() {
-    this._card.querySelector(".like")
-        .classList.toggle("like_active")
+    this._card.querySelector(".like").classList.toggle("like_active")
   }
 
   _deletePlace() {
@@ -35,17 +31,14 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._card.querySelector(".like")
-        .addEventListener("mousedown", () => {
-          this._setLike()
-        })
-    this._card.querySelector(".delete")
-        .addEventListener("mousedown", () => {
-          this._deletePlace()
-        })
-    this._card.querySelector(".gallery__image")
-        .addEventListener("mousedown", () => {
-          this._handleCardClick()
-        })
+    this._card.querySelector(".like").addEventListener("mousedown", () => {
+      this._setLike()
+    })
+    this._card.querySelector(".delete").addEventListener("mousedown", () => {
+      this._deletePlace()
+    })
+    this._card.querySelector(".gallery__image").addEventListener("mousedown", () => {
+      this._handleCardClick()
+    })
   }
 }

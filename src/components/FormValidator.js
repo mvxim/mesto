@@ -50,8 +50,8 @@ class FormValidator {
 
   _checkInputValidity(inputElement) {
     inputElement.validity.valid ?
-      this._hideInputError(inputElement) : this._showInputError(inputElement,
-        inputElement.validationMessage)
+        this._hideInputError(inputElement) : this._showInputError(inputElement,
+            inputElement.validationMessage)
 
   }
 
