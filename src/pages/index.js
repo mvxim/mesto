@@ -13,68 +13,63 @@ import {
   profileNameSelector,
   profileDescSelector,
   avatarSelector,
-  places,
+  //  places,
   formValidators,
   avatarModalSelector,
   avatarBtn,
-} from "../utils/constants.js"
-import { Section } from "../components/Section.js"
-import { Card } from "../components/Card.js"
+}                         from "../utils/constants.js"
+import { Section }        from "../components/Section.js"
+import { Card }           from "../components/Card.js"
 import {
   formConfig,
   FormValidator,
-} from "../components/FormValidator.js"
+}                         from "../components/FormValidator.js"
 import { PopupWithImage } from "../components/PopupWithImage.js"
-import { PopupWithForm } from "../components/PopupWithForm.js"
+import { PopupWithForm }  from "../components/PopupWithForm.js"
 // import { PopupWithConfirmation } from
 // "../components/PopupWithConfirmation.js"
-import { UserInfo } from "../components/UserInfo.js"
-import { Api } from "../components/Api.js"
+import { UserInfo }       from "../components/UserInfo.js"
+import { Api }            from "../components/Api.js"
 
-// # класс API для управления информацией на сервере
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// # экземпляр API для управления информацией на сервере
 const api = new Api({
   baseUrl: "https://nomoreparties.co/v1/cohort-30/",
   headers: {
-    authorization: "a2e8d35a-8087-4045-b36f-fee28ac34f65",
+    authorization:  "a2e8d35a-8087-4045-b36f-fee28ac34f65",
     "Content-Type": "application/json"
   }
 })
 
-// # управление информацией о пользователе
+// # экземпляр UserInfo для управления информацией о пользователе
 const bioData = new UserInfo({
-  nameSelector: profileNameSelector,
-  infoSelector: profileDescSelector,
+  nameSelector:   profileNameSelector,
+  infoSelector:   profileDescSelector,
   avatarSelector: avatarSelector
 })
 
-// ## получение информации с сервера и установка при загрузке
-// страницы
-api.getUserInfo().then((response) => {
-  bioData.setUserInfoToMarkup(response)
-  bioData.setAvatarToMarkup(response)
-})
-
-// ## управление картинкой профиля
+// ## экземпляр PopupWithForm для управления картинкой профиля
 const avatarModal = new PopupWithForm(avatarModalSelector,
-  ({ "avatar-field-link": link }) => {
-    avatarModal.togglePreloaderOnSubmit(true)
-    api.setUserAvatar(link).then((userAvatar) => {
-      bioData.setAvatarToMarkup(userAvatar)
-    }).catch((err) => {
-      console.log(err)
-    }).finally(() => {
-      avatarModal.togglePreloaderOnSubmit(false)
-      formValidators[ "avatar-form" ].disableButton()
+    ({ "avatar-field-link": link }) => {
+      avatarModal.togglePreloaderOnSubmit(true)
+      api.setUserAvatar(link).then((userAvatar) => {
+        bioData.setAvatarToMarkup(userAvatar)
+      }).catch((err) => {
+        console.log(err)
+      }).finally(() => {
+        avatarModal.togglePreloaderOnSubmit(false)
+        formValidators["avatar-form"].disableButton()
+      })
+      avatarModal.close()
     })
-    avatarModal.close()
-  })
 
 avatarBtn.addEventListener("mousedown", () => {
-  formValidators[ "avatar-form" ].resetForm()
+  formValidators["avatar-form"].resetForm()
   avatarModal.open()
 })
 
-// ## отправка новых имени и описания на сервер
+// ## экземпляр PopupWithForm для установки имени и описания
 const bioModal = new PopupWithForm(bioModalSelector, (inputValues) => {
   bioModal.togglePreloaderOnSubmit(true)
   api.setUserInfo(inputValues).then((userData) => {
@@ -83,66 +78,97 @@ const bioModal = new PopupWithForm(bioModalSelector, (inputValues) => {
     alert(err)
   }).finally(() => {
     bioModal.togglePreloaderOnSubmit(false)
-    formValidators[ "bio-form" ].disableButton()
   })
   bioModal.close()
 })
 
 profileEditBtn.addEventListener("mousedown", () => {
-  formValidators[ "bio-form" ].resetForm()
+  formValidators["bio-form"].resetForm()
   const currentBioData = bioData.getUserInfoFromMarkup()
   nameInput.value = currentBioData.name
   descInput.value = currentBioData.info
   bioModal.open()
 })
 
-// # управление созданием карточек
+// # экземпляры Section, Card и PopupWithImage для управления карточками мест
 const maxModal = new PopupWithImage(maxModalSelector)
 
-const createCard = (place) => {
-  const newPlace = new Card({
-    data: place,
-    handleCardClick: () => {
-      maxModal.open(place)
-    },
-  }, galleryItemTemplate)
-  return newPlace.assembleCard()
-}
-
+// ## экземпляр Section, где расположены все карточки
 const cardList = new Section({
-  data: places, renderer: (place) => {
+  renderer: (place) => {
     cardList.addItem(createCard(place))
   }
 }, galleryContainerSelector)
 
-cardList.renderItems()
-
-const cardModal = new PopupWithForm(cardModalSelector,
-  ({
-    "card-field-title": title,
-    "card-field-picture": picture
-  }) => {
-    const newItem = {
-      name: title,
-      link: picture,
+// ## функция-сборщик карточки. Создает Card и возвращает готовый элемент
+const createCard = (place) => {
+  const newPlace = new Card({
+    place,
+    handleCardClick:  () => {
+      maxModal.open(place)
+    },
+    handleCardLike:   () => {
+      console.log("Like!")
+      console.log(place.likes)
+    },
+    handleCardDelete: () => {
+      console.log("Delete!")
     }
-    cardList.addItem(createCard(newItem))
-    cardModal.close()
-  })
+
+  }, galleryItemTemplate)
+  return newPlace.assembleCard()
+}
+
+// ## экземпляр PopupWithForm для добавления новой карточки
+const cardModal = new PopupWithForm(cardModalSelector,
+    ({
+      "card-field-title":   title,
+      "card-field-picture": picture
+    }) => {
+      const newItem = {
+        name: title,
+        link: picture,
+      }
+      cardModal.togglePreloaderOnSubmit(true)
+      api.createNewPlace(newItem).then((newPlace) => {
+        cardList.addItem(createCard(newPlace))
+        cardModal.close()
+      }).catch((err) => {
+        console.log(err)
+      }).finally(() => {
+        cardModal.togglePreloaderOnSubmit(false)
+      })
+    })
 
 addNewPictureBtn.addEventListener("mousedown", () => {
-  formValidators[ "card-form" ].resetForm()
+  formValidators["card-form"].resetForm()
   cardModal.open()
 })
 
-// управление валидацией
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// # изначальное наполнение страницы
+// TODO: как отображать, что данные подгружаются до того, как они пришли?
+api.getDataOnPageLoad().then(([ userInfo, places ]) => {
+  // ## получение инфы о пользоваетеле с сервера и установка
+  bioData.setUserInfoToMarkup(userInfo)
+  bioData.setAvatarToMarkup(userInfo)
+  //// ## получение карточек с сервера и отрисовка
+  console.log(places)
+  cardList.renderItems(places)
+})
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// # управление валидацией
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {
     const formToValidate = new FormValidator(formElement, config)
-    formValidators[ formElement.name ] = formToValidate
+    formValidators[formElement.name] = formToValidate
     formToValidate.enableValidation()
   })
 }
 
+// ## запуск валидации
 enableValidation(formConfig)

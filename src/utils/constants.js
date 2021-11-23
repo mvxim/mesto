@@ -1,36 +1,36 @@
-import zubchatki from "../images/gallery/1.jpg"
-import kurum     from "../images/gallery/2.jpg"
-import dzhabyk   from "../images/gallery/3.jpg"
-import agidel    from "../images/gallery/4.jpg"
-import jamantau  from "../images/gallery/5.jpg"
-import turgojak  from "../images/gallery/6.jpg"
-
-export const places = [
-  {
-    name: "💙 Зубчатки",
-    link: zubchatki,
-  },
-  {
-    name: "🗿 Курум",
-    link: kurum,
-  },
-  {
-    name: "🏝 Джабык",
-    link: dzhabyk,
-  },
-  {
-    name: "🏞 Река Агидель",
-    link: agidel,
-  },
-  {
-    name: "🏔 Ямантау",
-    link: jamantau,
-  },
-  {
-    name: "🌊 Тургояк",
-    link: turgojak,
-  },
-]
+//import zubchatki from "../images/gallery/1.jpg"
+//import kurum     from "../images/gallery/2.jpg"
+//import dzhabyk   from "../images/gallery/3.jpg"
+//import agidel    from "../images/gallery/4.jpg"
+//import jamantau  from "../images/gallery/5.jpg"
+//import turgojak  from "../images/gallery/6.jpg"
+//
+//export const places = [
+//  {
+//    name: "💙 Зубчатки",
+//    link: zubchatki,
+//  },
+//  {
+//    name: "🗿 Курум",
+//    link: kurum,
+//  },
+//  {
+//    name: "🏝 Джабык",
+//    link: dzhabyk,
+//  },
+//  {
+//    name: "🏞 Река Агидель",
+//    link: agidel,
+//  },
+//  {
+//    name: "🏔 Ямантау",
+//    link: jamantau,
+//  },
+//  {
+//    name: "🌊 Тургояк",
+//    link: turgojak,
+//  },
+//]
 
 export const formConfig = {
   modalSelector:            ".modal",

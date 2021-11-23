@@ -2,6 +2,7 @@ export class Api {
   constructor({ baseUrl, headers }) {
     this._url = baseUrl
     this._headers = headers
+    this._promises = [ this.getUserInfo(), this.getSetOfPlaces() ]
   }
 
   _onResponse(res) {
@@ -43,5 +44,29 @@ export class Api {
       )
     }).
         then(this._onResponse)
+  }
+
+  getSetOfPlaces() {
+    return fetch(`${this._url}cards`, {
+      method:  "GET",
+      headers: this._headers
+    }).then(this._onResponse)
+  }
+
+  createNewPlace({ name, link }) {
+    return fetch(`${this._url}cards`, {
+      method:  "POST",
+      headers: this._headers,
+      body:    JSON.stringify(
+          {
+            name: name,
+            link: link
+          }
+      )
+    }).then(this._onResponse)
+  }
+
+  getDataOnPageLoad() {
+    return Promise.all(this._promises)
   }
 }

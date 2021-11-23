@@ -1,12 +1,12 @@
 export class Section {
-  constructor({ data, renderer }, containerSelector) {
-    this._items = data
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer
     this._container = document.querySelector(containerSelector)
+    this._preloader = this._container.querySelector(".gallery__status")
   }
 
-  renderItems() {
-    this._items.forEach(item => {
+  renderItems(places) {
+    places.forEach(item => {
       this._renderer(item)
     })
   }

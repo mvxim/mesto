@@ -4,17 +4,18 @@ export class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector)
     this._form = this._popupElement.querySelector(".modal__form")
+    this._boundOnSubmitAction = this.setOnSubmitAction.bind(this)
   }
 
-  onSubmitAction(callback) {
-    this._handleConfirmation = callback
+  setOnSubmitAction(callback) {
+    return callback
   }
 
   setEventListeners(e) {
     super.setEventListeners()
     this._form.addEventListener("submit", (e) => {
       e.preventDefault()
-      this._handleConfirmation()
+      this._boundOnSubmitAction()
     })
   }
 }

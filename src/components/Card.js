@@ -1,11 +1,22 @@
 export class Card {
-  constructor({ data, handleCardClick }, templateClassName) {
+  constructor({
+    place,
+    handleCardClick,
+    handleCardLike,
+    handleCardDelete
+  }, templateClassName) {
     this._templateElementSelector = templateClassName
     this._cardElementSelector = ".gallery__item"
     this._card = this._getTemplateElement()
-    this._title = data.name
-    this._image = data.link
+    this._title = place.name
+    this._image = place.link
+    this._likes = place.likes
+    this._cardId = place.id
     this._handleCardClick = handleCardClick
+    this._handleCardLike = handleCardLike
+    this._handleCardDelete = handleCardDelete
+    this._boundHandleCardLike = this._handleCardClick.bind(this)
+    this._boundHandleCardDelete = this._handleCardDelete.bind(this)
     this._cardText = this._card.querySelector(".gallery__text")
     this._cardImage = this._card.querySelector(".gallery__image")
   }
@@ -24,10 +35,12 @@ export class Card {
 
   _setLike() {
     this._card.querySelector(".like").classList.toggle("like_active")
+    this._handleCardLike(this._boundHandleCardLike)
   }
 
   _deletePlace() {
     this._card.remove()
+    this._handleCardDelete(this._boundHandleCardDelete)
   }
 
   _setEventListeners() {
