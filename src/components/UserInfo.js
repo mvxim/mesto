@@ -1,18 +1,23 @@
 export class UserInfo {
-  constructor({ nameSelector, infoSelector }) {
+  constructor({ nameSelector, infoSelector, avatarSelector }) {
     this._userName = document.querySelector(nameSelector)
     this._userInfo = document.querySelector(infoSelector)
+    this._userAvatar = document.querySelector(avatarSelector)
   }
 
-  getUserInfo() {
+  getUserInfoFromMarkup() {
     return {
       name: this._userName.textContent,
       info: this._userInfo.textContent
     }
   }
 
-  setUserInfo({ "bio-field-name": name, "bio-field-desc": info }) {
+  setUserInfoToMarkup({ name, about }) {
     this._userName.textContent = name
-    this._userInfo.textContent = info
+    this._userInfo.textContent = about
+  }
+
+  setAvatarToMarkup({ avatar }) {
+    this._userAvatar.src = avatar
   }
 }

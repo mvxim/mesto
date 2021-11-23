@@ -1,5 +1,5 @@
 export class Card {
-  constructor({ data, handleCardClick, handleCardDelete }, templateClassName) {
+  constructor({ data, handleCardClick }, templateClassName) {
     this._templateElementSelector = templateClassName
     this._cardElementSelector = ".gallery__item"
     this._card = this._getTemplateElement()
@@ -41,4 +41,5 @@ export class Card {
       this._handleCardClick()
     })
   }
+
 }
