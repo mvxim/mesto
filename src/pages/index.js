@@ -107,11 +107,21 @@ const createCard = (place) => {
     handleCardClick:  () => {
       maxModal.open(place)
     },
-    handleCardLike:   () => {
-      console.log("Like!")
-      console.log(place.likes)
+    handleLikeSet:    (cardId) => {
+      api.setLike(cardId).then((res) => {
+        newPlace.like(res)
+      }).catch((err) => {
+        console.log(err)
+      })
     },
-    handleCardDelete: () => {
+    handleLikeRemove: (cardId) => {
+      api.removeLike(cardId).then((res) => {
+        newPlace.like(res)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    handleCardDelete: (newPlace) => {
       console.log("Delete!")
     }
 
@@ -156,6 +166,8 @@ api.getDataOnPageLoad().then(([ userInfo, places ]) => {
   //// ## получение карточек с сервера и отрисовка
   console.log(places)
   cardList.renderItems(places)
+}).catch((err) => {
+  console.log(err)
 })
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

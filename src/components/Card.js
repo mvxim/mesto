@@ -1,24 +1,33 @@
+import { logPlugin } from "@babel/preset-env/lib/debug.js"
+
 export class Card {
   constructor({
     place,
     handleCardClick,
-    handleCardLike,
+    handleLikeSet,
+    handleLikeRemove,
     handleCardDelete
   }, templateClassName) {
-    this._templateElementSelector = templateClassName
-    this._cardElementSelector = ".gallery__item"
-    this._card = this._getTemplateElement()
+
     this._title = place.name
     this._image = place.link
     this._likes = place.likes
-    this._cardId = place.id
+    this._cardId = place._id
+    this._ownerId = place.owner._id
     this._handleCardClick = handleCardClick
-    this._handleCardLike = handleCardLike
+    this._handleLikeSet = handleLikeSet
+    this._handleLikeRemove = handleLikeRemove
     this._handleCardDelete = handleCardDelete
-    this._boundHandleCardLike = this._handleCardClick.bind(this)
-    this._boundHandleCardDelete = this._handleCardDelete.bind(this)
+    this._templateElementSelector = templateClassName
+
+    this._cardElementSelector = ".gallery__item"
+    this._card = this._getTemplateElement()
     this._cardText = this._card.querySelector(".gallery__text")
     this._cardImage = this._card.querySelector(".gallery__image")
+    this._likeButton = this._card.querySelector(".like")
+    this._likeCounter = this._card.querySelector(".gallery__like-btn-counter")
+    this._deleteButton = this._card.querySelector(".delete")
+
   }
 
   _getTemplateElement() {
@@ -29,28 +38,40 @@ export class Card {
     this._cardText.textContent = this._title
     this._cardImage.src = this._image
     this._cardImage.alt = `Фотография красивого места: ${this._title}`
+    this._likeCounter.textContent = this._likes.length
+    if (this._likes.length > 0) {
+      this._likeButton.classList.add("like_active")
+    }
     this._setEventListeners()
     return this._card
   }
 
-  _setLike() {
-    this._card.querySelector(".like").classList.toggle("like_active")
-    this._handleCardLike(this._boundHandleCardLike)
+  _handleLike() {
+    if (this._likeButton.classList.contains("like_active")) {
+      this._handleLikeRemove(this._cardId)
+    } else {
+      this._handleLikeSet(this._cardId)
+    }
+  }
+
+  like({ likes }) {
+    this._likeButton.classList.toggle("like_active")
+    this._likeCounter.textContent = likes.length
   }
 
   _deletePlace() {
     this._card.remove()
-    this._handleCardDelete(this._boundHandleCardDelete)
+    this._handleCardDelete()
   }
 
   _setEventListeners() {
-    this._card.querySelector(".like").addEventListener("mousedown", () => {
-      this._setLike()
+    this._likeButton.addEventListener("mousedown", () => {
+      this._handleLike()
     })
-    this._card.querySelector(".delete").addEventListener("mousedown", () => {
+    this._deleteButton.addEventListener("mousedown", () => {
       this._deletePlace()
     })
-    this._card.querySelector(".gallery__image").addEventListener("mousedown", () => {
+    this._cardImage.addEventListener("mousedown", () => {
       this._handleCardClick()
     })
   }

@@ -66,6 +66,20 @@ export class Api {
     }).then(this._onResponse)
   }
 
+  setLike(cardId) {
+    return fetch(`${this._url}cards/likes/${cardId}`, {
+      method:  "PUT",
+      headers: this._headers,
+    }).then(this._onResponse)
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._url}cards/likes/${cardId}`, {
+      method:  "DELETE",
+      headers: this._headers,
+    }).then(this._onResponse)
+  }
+
   getDataOnPageLoad() {
     return Promise.all(this._promises)
   }
