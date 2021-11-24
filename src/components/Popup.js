@@ -8,15 +8,13 @@ export class Popup {
   }
 
   open() {
+    document.addEventListener("keydown", this._boundHandleEscClose)
     this._popupElement.classList.add("modal_active")
     page.classList.add("page_no-scroll")
-    this.setEventListeners()
-
   }
 
   close() {
     document.removeEventListener("keydown", this._boundHandleEscClose)
-    document.removeEventListener("keydown", this._boundHandleClickClose)
     this._popupElement.classList.remove("modal_active")
     page.classList.remove("page_no-scroll")
   }
@@ -29,13 +27,12 @@ export class Popup {
 
   _handleClickClose(e) {
     if (e.target.classList.contains("modal") ||
-        e.target.classList.contains("modal__close-btn")) {
+      e.target.classList.contains("modal__close-btn")) {
       this.close()
     }
   }
 
   setEventListeners() {
     this._popupElement.addEventListener("mousedown", this._boundHandleClickClose)
-    document.addEventListener("keydown", this._boundHandleEscClose)
   }
 }

@@ -5,8 +5,7 @@ export class Section {
   }
 
   renderItems(places) {
-    const reversedPlaces = places.reverse()
-    reversedPlaces.forEach(place => {
+    places.forEach(place => {
       this._renderer(place)
     })
   }

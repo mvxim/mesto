@@ -13,7 +13,7 @@ export class PopupWithConfirmation extends Popup {
     this._confirmCallback = confirmCallback
   }
 
-  _submitHandler() {
+  _submitHandler(e) {
     e.preventDefault()
     this._confirmCallback()
   }
@@ -28,7 +28,6 @@ export class PopupWithConfirmation extends Popup {
 
   close() {
     super.close()
-    this._form.removeEventListener("submit", this._boundSubmitHandler)
   }
 
   setEventListeners() {

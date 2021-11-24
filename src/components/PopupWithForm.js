@@ -15,7 +15,7 @@ export class PopupWithForm extends Popup {
     this._inputList = this._form.querySelectorAll(".modal__input")
     this._formValues = {}
     this._inputList.forEach(input => {
-      this._formValues[input.name] = input.value
+      this._formValues[ input.name ] = input.value
     })
     return this._formValues
   }
@@ -39,7 +39,6 @@ export class PopupWithForm extends Popup {
   }
 
   close() {
-    this._form.removeEventListener("submit", this._boundSubmitHandler)
     super.close()
     this._form.reset()
   }

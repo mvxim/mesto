@@ -72,13 +72,13 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("mousedown", () => {
+    this._likeButton.addEventListener("click", () => {
       this._handleLike()
     })
-    this._deleteButton.addEventListener("mousedown", () => {
+    this._deleteButton.addEventListener("click", () => {
       this._cardDeleteCallback(this._placeId)
     })
-    this._cardImage.addEventListener("mousedown", () => {
+    this._cardImage.addEventListener("click", () => {
       this._cardClickCallback()
     })
   }
