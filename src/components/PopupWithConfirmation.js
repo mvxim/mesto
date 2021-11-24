@@ -6,10 +6,16 @@ export class PopupWithConfirmation extends Popup {
     this._form = this._popupElement.querySelector(".modal__form")
     this._submitButton = this._form.querySelector(".modal__button")
     this._submitButtonDefaultText = this._submitButton.textContent
+    this._boundSubmitHandler = this._submitHandler.bind(this)
   }
 
   onSubmit(confirmCallback) {
     this._confirmCallback = confirmCallback
+  }
+
+  _submitHandler() {
+    e.preventDefault()
+    this._confirmCallback()
   }
 
   togglePreloaderOnSubmit(isLoading) {
@@ -20,11 +26,13 @@ export class PopupWithConfirmation extends Popup {
     }
   }
 
+  close() {
+    super.close()
+    this._form.removeEventListener("submit", this._boundSubmitHandler)
+  }
+
   setEventListeners() {
     super.setEventListeners()
-    this._form.addEventListener("submit", (e) => {
-      e.preventDefault()
-      this._confirmCallback()
-    })
+    this._form.addEventListener("submit", this._boundSubmitHandler)
   }
 }
