@@ -80,6 +80,13 @@ export class Api {
     }).then(this._onResponse)
   }
 
+  removePlace(cardId) {
+    return fetch(`${this._url}cards/${cardId}`, {
+      method:  "DELETE",
+      headers: this._headers,
+    }).then(this._onResponse)
+  }
+
   getDataOnPageLoad() {
     return Promise.all(this._promises)
   }

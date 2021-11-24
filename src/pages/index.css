@@ -30,7 +30,7 @@
 
 /* delete */
 @import url(../blocks/delete/delete.css);
-
+@import url(../blocks/delete/_hidden/delete_hidden.css);
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);

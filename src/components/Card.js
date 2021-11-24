@@ -1,23 +1,23 @@
-import { logPlugin } from "@babel/preset-env/lib/debug.js"
-
 export class Card {
   constructor({
     place,
-    handleCardClick,
-    handleLikeSet,
-    handleLikeRemove,
-    handleCardDelete
+    userId,
+    cardClickCallback,
+    likeSetCallback,
+    likeRemoveCallback,
+    cardDeleteCallback
   }, templateClassName) {
 
+    this._userId = userId
     this._title = place.name
     this._image = place.link
     this._likes = place.likes
-    this._cardId = place._id
-    this._ownerId = place.owner._id
-    this._handleCardClick = handleCardClick
-    this._handleLikeSet = handleLikeSet
-    this._handleLikeRemove = handleLikeRemove
-    this._handleCardDelete = handleCardDelete
+    this._placeId = place._id
+    this._placeOwnerId = place.owner._id
+    this._cardClickCallback = cardClickCallback
+    this._likeSetCallback = likeSetCallback
+    this._likeRemoveCallback = likeRemoveCallback
+    this._cardDeleteCallback = cardDeleteCallback
     this._templateElementSelector = templateClassName
 
     this._cardElementSelector = ".gallery__item"
@@ -34,34 +34,41 @@ export class Card {
     return document.querySelector(this._templateElementSelector).content.querySelector(this._cardElementSelector).cloneNode(true)
   }
 
+  _isLiked() { // проверяет, есть ли в массиве лайков — мой, возвращает булево
+    return this._likes.some(like => like._id === this._userId)
+  }
+
   assembleCard() {
     this._cardText.textContent = this._title
     this._cardImage.src = this._image
     this._cardImage.alt = `Фотография красивого места: ${this._title}`
-    this._likeCounter.textContent = this._likes.length
-    if (this._likes.length > 0) {
+    if (this._isLiked()) {
       this._likeButton.classList.add("like_active")
     }
+    if (this._userId !== this._placeOwnerId) {
+      this._deleteButton.classList.add("delete_hidden")
+    }
+    this._likeCounter.textContent = this._likes.length
     this._setEventListeners()
     return this._card
   }
 
   _handleLike() {
-    if (this._likeButton.classList.contains("like_active")) {
-      this._handleLikeRemove(this._cardId)
+    if (this._isLiked()) {
+      this._likeRemoveCallback(this._placeId)
     } else {
-      this._handleLikeSet(this._cardId)
+      this._likeSetCallback(this._placeId)
     }
   }
 
-  like({ likes }) {
+  like(likeData) {
+    this._likes = likeData.likes
+    this._likeCounter.textContent = likeData.likes.length
     this._likeButton.classList.toggle("like_active")
-    this._likeCounter.textContent = likes.length
   }
 
-  _deletePlace() {
+  removePlace() {
     this._card.remove()
-    this._handleCardDelete()
   }
 
   _setEventListeners() {
@@ -69,10 +76,10 @@ export class Card {
       this._handleLike()
     })
     this._deleteButton.addEventListener("mousedown", () => {
-      this._deletePlace()
+      this._cardDeleteCallback(this._placeId)
     })
     this._cardImage.addEventListener("mousedown", () => {
-      this._handleCardClick()
+      this._cardClickCallback()
     })
   }
 
