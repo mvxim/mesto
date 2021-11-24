@@ -1,10 +1,10 @@
 .profile__edit-btn {
-  box-sizing: border-box;
+  box-sizing:  border-box;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #fff;
-  background: url("../../../images/profile/prodile__edit-btn.svg") no-repeat center;
+  width:       24px;
+  height:      24px;
+  border:      1px solid #fff;
+  background:  url("../../../images/profile/prodile__edit-btn.svg") no-repeat center;
 }
 
 .profile__edit-btn:hover {
@@ -14,7 +14,7 @@
 @media screen and (max-width: 767px) {
   .profile__edit-btn {
     background-size: 8px 8px;
-    width: 18px;
-    height: 18px;
+    width:           18px;
+    height:          18px;
   }
 }

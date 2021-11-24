@@ -1,9 +1,9 @@
 .page__container {
-  max-width: 976px;
-  margin: 0 auto;
-  padding: 45px 48px 60px;
-  box-sizing: border-box;
-  display: flex;
+  max-width:      976px;
+  margin:         0 auto;
+  padding:        45px 48px 60px;
+  box-sizing:     border-box;
+  display:        flex;
   flex-direction: column;
 }
 

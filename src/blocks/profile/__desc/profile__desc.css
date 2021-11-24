@@ -1,18 +1,18 @@
 .profile__desc {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.22;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
+  margin:        0;
+  font-size:     18px;
+  line-height:   1.22;
+  font-weight:   400;
+  white-space:   nowrap;
+  overflow:      hidden;
   text-overflow: ellipsis;
-  width: 100%;
-  }
+  width:         100%;
+}
 
 @media screen and (max-width: 767px) {
   .profile__desc {
-    font-size: 14px;
+    font-size:   14px;
     line-height: 1.21;
-    text-align: center;
+    text-align:  center;
   }
 }

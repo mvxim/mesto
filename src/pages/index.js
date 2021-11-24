@@ -16,24 +16,24 @@ import {
   avatarModalSelector,
   confirmModalSelector,
   avatarBtn,
-} from "../utils/constants.js"
-import { Section } from "../components/Section.js"
-import { Card } from "../components/Card.js"
+}                                from "../utils/constants.js"
+import { Section }               from "../components/Section.js"
+import { Card }                  from "../components/Card.js"
 import {
   formConfig,
   FormValidator,
-} from "../components/FormValidator.js"
-import { PopupWithImage } from "../components/PopupWithImage.js"
-import { PopupWithForm } from "../components/PopupWithForm.js"
+}                                from "../components/FormValidator.js"
+import { PopupWithImage }        from "../components/PopupWithImage.js"
+import { PopupWithForm }         from "../components/PopupWithForm.js"
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js"
-import { UserInfo } from "../components/UserInfo.js"
-import { Api } from "../components/Api.js"
+import { UserInfo }              from "../components/UserInfo.js"
+import { Api }                   from "../components/Api.js"
 
-// # экземпляр API для управления информацией на сервере
+// экземпляр API для управления информацией на сервере
 const api = new Api({
   baseUrl: "https://nomoreparties.co/v1/cohort-30/",
   headers: {
-    authorization: "a2e8d35a-8087-4045-b36f-fee28ac34f65",
+    authorization:  "a2e8d35a-8087-4045-b36f-fee28ac34f65",
     "Content-Type": "application/json"
   }
 })
@@ -41,38 +41,38 @@ const api = new Api({
 api.getDataOnPageLoad().then(([ userInfo, places ]) => {
   const userId = userInfo._id
 
-  // # экземпляр UserInfo для управления информацией о пользователе
+  // экземпляр UserInfo для управления информацией о пользователе
   const bioData = new UserInfo({
-    nameSelector: profileNameSelector,
-    infoSelector: profileDescSelector,
+    nameSelector:   profileNameSelector,
+    infoSelector:   profileDescSelector,
     avatarSelector: avatarSelector
   })
 
-  // ## экземпляр PopupWithForm для управления картинкой профиля
+  // экземпляр PopupWithForm для управления картинкой профиля
   const avatarModal = new PopupWithForm(avatarModalSelector,
-    ({ "avatar-field-link": link }) => {
-      avatarModal.togglePreloaderOnSubmit(true)
-      api.setUserAvatar(link).then((userAvatar) => {
-        bioData.setAvatarToMarkup(userAvatar)
-      }).catch((err) => {
-        console.log(err)
-      }).finally(() => {
-        avatarModal.togglePreloaderOnSubmit(false)
-        formValidators[ "avatar-form" ].disableButton()
+      ({ "avatar-field-link": link }) => {
+        avatarModal.togglePreloaderOnSubmit(true)
+        api.setUserAvatar(link).then((userAvatar) => {
+          bioData.setAvatarToMarkup(userAvatar)
+        }).catch((err) => {
+          console.log(err)
+        }).finally(() => {
+          avatarModal.togglePreloaderOnSubmit(false)
+          formValidators["avatar-form"].disableButton()
+        })
+        avatarModal.close()
       })
-      avatarModal.close()
-    })
 
   avatarBtn.addEventListener("mousedown", () => {
-    formValidators[ "avatar-form" ].resetForm()
+    formValidators["avatar-form"].resetForm()
     avatarModal.open()
   })
 
-  // ## получение инфы о пользоваетеле с сервера и установка
+  // получение инфы о пользоваетеле с сервера и установка
   bioData.setUserInfoToMarkup(userInfo)
   bioData.setAvatarToMarkup(userInfo)
 
-  // ## экземпляр PopupWithForm для установки имени и описания
+  // экземпляр PopupWithForm для установки имени и описания
   const bioModal = new PopupWithForm(bioModalSelector, (inputValues) => {
     bioModal.togglePreloaderOnSubmit(true)
     api.setUserInfo(inputValues).then((userData) => {
@@ -86,54 +86,54 @@ api.getDataOnPageLoad().then(([ userInfo, places ]) => {
   })
 
   profileEditBtn.addEventListener("mousedown", () => {
-    formValidators[ "bio-form" ].resetForm()
+    formValidators["bio-form"].resetForm()
     const currentBioData = bioData.getUserInfoFromMarkup()
     nameInput.value = currentBioData.name
     descInput.value = currentBioData.info
     bioModal.open()
   })
 
-  // # экземпляр PopupWithImage
+  // экземпляр PopupWithImage
   const maxModal = new PopupWithImage(maxModalSelector)
 
-  // ## экземпляр PopupWithForm для добавления новой карточки
+  // экземпляр PopupWithForm для добавления новой карточки
   const cardModal = new PopupWithForm(cardModalSelector,
-    ({
-      "card-field-title": title,
-      "card-field-picture": picture
-    }) => {
-      const newItem = {
-        name: title,
-        link: picture,
-      }
-      cardModal.togglePreloaderOnSubmit(true)
-      api.createNewPlace(newItem).then((res) => {
-        cardList.addItem(createCard(res, userInfo))
-        cardModal.close()
-      }).catch((err) => {
-        console.log(err)
-      }).finally(() => {
-        cardModal.togglePreloaderOnSubmit(false)
+      ({
+        "card-field-title":   title,
+        "card-field-picture": picture
+      }) => {
+        const newItem = {
+          name: title,
+          link: picture,
+        }
+        cardModal.togglePreloaderOnSubmit(true)
+        api.createNewPlace(newItem).then((res) => {
+          cardList.addItem(createCard(res, userInfo))
+          cardModal.close()
+        }).catch((err) => {
+          console.log(err)
+        }).finally(() => {
+          cardModal.togglePreloaderOnSubmit(false)
+        })
       })
-    })
 
   addNewPictureBtn.addEventListener("mousedown", () => {
-    formValidators[ "card-form" ].resetForm()
+    formValidators["card-form"].resetForm()
     cardModal.open()
   })
 
-  // ## экземпляр PopupWithForm для подтверждения
+  // экземпляр PopupWithForm для подтверждения
   const confirmationModal = new PopupWithConfirmation(confirmModalSelector)
 
-  // ## функция-сборщик карточки. Создает Card и возвращает готовый элемент
+  // функция-сборщик карточки. Создает Card и возвращает готовый элемент
   const createCard = (place) => {
     const newPlace = new Card({
       place,
       userId,
-      cardClickCallback: () => {
+      cardClickCallback:  () => {
         maxModal.open(place)
       },
-      likeSetCallback: (placeId) => {
+      likeSetCallback:    (placeId) => {
         api.setLike(placeId).then((res) => {
           newPlace.like(res)
         }).catch((err) => {
@@ -149,7 +149,7 @@ api.getDataOnPageLoad().then(([ userInfo, places ]) => {
       },
       cardDeleteCallback: (placeId) => {
         confirmationModal.open()
-        formValidators[ "confirm-form" ].enableButton()
+        formValidators["confirm-form"].enableButton()
         confirmationModal.onSubmit(() => {
           confirmationModal.togglePreloaderOnSubmit(true)
           api.removePlace(placeId).then(() => {
@@ -167,7 +167,7 @@ api.getDataOnPageLoad().then(([ userInfo, places ]) => {
     return newPlace.assembleCard()
   }
 
-  // ## экземпляр Section, где расположены все карточки
+  // экземпляр Section, где расположены все карточки
   const cardList = new Section({
     renderer: (place) => {
       cardList.addItem(createCard(place))
@@ -177,12 +177,12 @@ api.getDataOnPageLoad().then(([ userInfo, places ]) => {
 
   cardList.renderItems(places)
 
-  // # управление валидацией
+  // управление валидацией
   const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector))
     formList.forEach((formElement) => {
       const formToValidate = new FormValidator(formElement, config)
-      formValidators[ formElement.name ] = formToValidate
+      formValidators[formElement.name] = formToValidate
       formToValidate.enableValidation()
     })
   }

@@ -1,10 +1,9 @@
 .gallery__grid {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
+  list-style-type:       none;
+  margin:                0;
+  padding:               0;
+  display:               grid;
   grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
-  grid-gap: 16px;
-  justify-content: center;
+  grid-gap:              16px;
+  justify-content:       center;
 }
-

@@ -1,18 +1,18 @@
 .modal {
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
+  opacity:          0;
+  visibility:       hidden;
+  display:          flex;
   background-color: hsla(0, 0%, 0%, .5);
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 0 48px;
-  transition: visibility .3s, opacity .3s;
+  justify-content:  center;
+  align-items:      center;
+  box-sizing:       border-box;
+  padding:          0 48px;
+  transition:       visibility .3s, opacity .3s;
 }
 
 @media screen and (max-width: 767px) {
   .modal {
     padding: 0 19px;
   }
-
+  
 }

@@ -1,12 +1,12 @@
-.profile__bio{
-  display: flex;
+.profile__bio {
+  display:     flex;
   align-items: center;
-  column-gap: 30px;
+  column-gap:  30px;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__bio{
+  .profile__bio {
     flex-direction: column;
-    row-gap: 26px;
+    row-gap:        26px;
   }
 }

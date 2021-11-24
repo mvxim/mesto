@@ -3,7 +3,6 @@ import { formConfig } from "../utils/constants.js"
 class FormValidator {
   constructor(form, formConfig) {
     this._formElement = form
-    this._modalElement = form.closest(formConfig.modalSelector)
     this._formInputElements =
         Array.from(form.querySelectorAll(formConfig.inputSelector))
     this._formSubmitButtonElement =

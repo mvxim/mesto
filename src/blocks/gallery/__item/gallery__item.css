@@ -1,7 +1,7 @@
 .gallery__item {
-  position: relative;
-  border-radius: 10px;
+  position:         relative;
+  border-radius:    10px;
   background-color: #fff;
-  overflow: hidden;
-  font-size: 0;
+  overflow:         hidden;
+  font-size:        0;
 }

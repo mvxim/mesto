@@ -1,7 +1,7 @@
 .modal__image {
-  display: block;
+  display:    block;
   max-height: 75vh;
-  max-width: 75vw;
+  max-width:  75vw;
 }
 
 @media screen and (max-width: 767px) {
