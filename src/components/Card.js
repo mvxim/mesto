@@ -1,14 +1,14 @@
 export class Card {
   constructor({
     place,
-    userId,
     cardClickCallback,
     likeSetCallback,
     likeRemoveCallback,
     cardDeleteCallback
   }, templateClassName) {
 
-    this._userId = userId
+    this._place = place
+    this._userId = place.currentUserId
     this._title = place.name
     this._image = place.link
     this._likes = place.likes
@@ -39,6 +39,7 @@ export class Card {
   }
 
   assembleCard() {
+    console.log(this._place)
     this._cardText.textContent = this._title
     this._cardImage.src = this._image
     this._cardImage.alt = `Фотография красивого места: ${this._title}`
