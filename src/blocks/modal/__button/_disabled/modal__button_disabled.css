@@ -1,10 +1,10 @@
 .modal__button_disabled {
-  border:           1px solid hsla(0, 0%, 0%, .2);
-  background-color: hsla(0, 0%, 0%, 0);
-  color:            hsla(0, 0%, 0%, .2);
-  cursor:           default;
+    border: 1px solid hsla(0, 0%, 0%, .2);
+    background-color: hsla(0, 0%, 0%, 0);
+    color: hsla(0, 0%, 0%, .2);
+    cursor: default;
 }
 
 .modal__button_disabled:hover {
-  background-color: hsla(0, 0%, 0%, 0);
+    background-color: hsla(0, 0%, 0%, 0);
 }

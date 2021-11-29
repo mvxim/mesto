@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js"
+import {Popup} from "./Popup.js"
 
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -6,7 +6,7 @@ export class PopupWithImage extends Popup {
     this._modalImage = this._popupElement.querySelector(".modal__image")
     this._modalCaption = this._popupElement.querySelector(".modal__caption")
   }
-
+  
   open(data) {
     super.open()
     this._modalImage.src = data.link

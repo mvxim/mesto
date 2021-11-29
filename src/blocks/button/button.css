@@ -1,7 +1,7 @@
 .button {
-  box-sizing:       border-box;
-  background-color: hsla(0, 0%, 0%, 1);
-  cursor:           pointer;
-  color:            #fff;
-  transition:       .2s all ease;
+    box-sizing: border-box;
+    background-color: hsla(0, 0%, 0%, 1);
+    cursor: pointer;
+    color: #fff;
+    transition: .2s all ease;
 }

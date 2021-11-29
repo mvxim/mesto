@@ -1,5 +1,5 @@
 const presets = [
-  [ "@babel/preset-env", {
+  ["@babel/preset-env", {
     targets: {
       edge: "17",
       ie: "11",
@@ -8,7 +8,7 @@ const presets = [
       safari: "11.1"
     },
     useBuiltIns: "entry"
-  } ]
+  }]
 ]
 
-module.exports = { presets }
+module.exports = {presets}

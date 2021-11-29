@@ -1,14 +1,14 @@
 .page__container {
-  max-width:      976px;
-  margin:         0 auto;
-  padding:        45px 48px 60px;
-  box-sizing:     border-box;
-  display:        flex;
-  flex-direction: column;
+    max-width: 976px;
+    margin: 0 auto;
+    padding: 45px 48px 60px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
-  .page__container {
-    padding: 28px 19px 36px;
-  }
+    .page__container {
+        padding: 28px 19px 36px;
+    }
 }

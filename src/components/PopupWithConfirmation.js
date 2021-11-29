@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js"
+import {Popup} from "./Popup.js"
 
 export class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
@@ -8,16 +8,16 @@ export class PopupWithConfirmation extends Popup {
     this._submitButtonDefaultText = this._submitButton.textContent
     this._boundSubmitHandler = this._submitHandler.bind(this)
   }
-
+  
   onSubmit(confirmCallback) {
     this._confirmCallback = confirmCallback
   }
-
+  
   _submitHandler(e) {
     e.preventDefault()
     this._confirmCallback()
   }
-
+  
   togglePreloaderOnSubmit(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = "⏳ Удаление..."
@@ -25,11 +25,11 @@ export class PopupWithConfirmation extends Popup {
       this._submitButton.textContent = this._submitButtonDefaultText
     }
   }
-
+  
   close() {
     super.close()
   }
-
+  
   setEventListeners() {
     super.setEventListeners()
     this._form.addEventListener("submit", this._boundSubmitHandler)

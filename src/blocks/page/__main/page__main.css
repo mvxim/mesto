@@ -1,9 +1,9 @@
 .page__main {
-  margin-bottom: 66px;
+    margin-bottom: 66px;
 }
 
 @media screen and (max-width: 767px) {
-  .page__main {
-    margin-bottom: 48px;
-  }
+    .page__main {
+        margin-bottom: 48px;
+    }
 }

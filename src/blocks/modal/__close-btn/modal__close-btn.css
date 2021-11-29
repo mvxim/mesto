@@ -1,27 +1,27 @@
 .modal__close-btn {
-  display:         block;
-  position:        absolute;
-  top:             -40px;
-  right:           -40px;
-  border:          none;
-  width:           32px;
-  height:          32px;
-  background:      url("../../../images/modal/modal__close-btn.svg") no-repeat center center;
-  background-size: contain;
-  padding:         0;
-  cursor:          pointer;
-  transition:      .2s opacity ease;
+    display: block;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    border: none;
+    width: 32px;
+    height: 32px;
+    background: url("../../../images/modal/modal__close-btn.svg") no-repeat center center;
+    background-size: contain;
+    padding: 0;
+    cursor: pointer;
+    transition: .2s opacity ease;
 }
 
 .modal__close-btn:hover {
-  opacity: .6;
+    opacity: .6;
 }
 
 @media screen and (max-width: 767px) {
-  .modal__close-btn {
-    top:    -36px;
-    right:  0;
-    width:  20px;
-    height: 20px;
-  }
+    .modal__close-btn {
+        top: -36px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
 }

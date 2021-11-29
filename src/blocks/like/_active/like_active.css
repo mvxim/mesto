@@ -1,18 +1,18 @@
 .like_active {
-  background: url("../../../images/gallery/like-btn_active.svg") no-repeat center center;
-  animation:  like .4s;
+    background: url("../../../images/gallery/like-btn_active.svg") no-repeat center center;
+    animation: like .4s;
 }
 
 @keyframes like {
-  0% {
-    transform: scale(1);
-  }
-  
-  50% {
-    transform: scale(1.2);
-  }
-  
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

@@ -1,11 +1,11 @@
 .like {
-  transition: .2s opacity ease;
-  cursor:     pointer;
-  border:     none;
-  background: url("../../images/gallery/like-btn.svg") no-repeat center center;
-  display:    inline-block;
+    transition: .2s opacity ease;
+    cursor: pointer;
+    border: none;
+    background: url("../../images/gallery/like-btn.svg") no-repeat center center;
+    display: inline-block;
 }
 
 .like:hover {
-  opacity: .5;
+    opacity: .5;
 }
