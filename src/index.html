@@ -2,189 +2,189 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="IE=edge"
-          http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0"
-          name="viewport">
-    <title>Место</title>
+  <meta charset="UTF-8">
+  <meta content="IE=edge"
+        http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport">
+  <title>Место</title>
 </head>
 
 <body class="page">
 <div class="page__container">
-    <header class="header page__header">
-        <a class="header__link"
-           href="#">
-            <img alt="Логотип сервиса «Место»."
-                 class="header__logo"
-                 src="<%=require('./images/logo/logo_color_white.svg')%>">
-        </a>
-    </header>
-    <main class="main page__main">
-        <section aria-label="Профиль пользователя"
-                 class="profile main__profile">
-            <div class="profile__bio">
-                <div class="profile__avatar-wrapper">
-                    <img alt="Фотография профиля пользователя"
-                         class="profile__avatar"
-                         src="<%=require('./images/profile/avatar-gem.png')%>">
-                    <button class="button profile__avatar-btn"></button>
-                </div>
-                <div class="profile__details">
-                    <div class="profile__row">
-                        <h1 class="profile__name"></h1>
-                        <button class="button profile__edit-btn"
-                                type="button"></button>
-                    </div>
-                    <p class="profile__desc"></p>
-                </div>
-                <button class="button profile__add-btn"
-                        type="button"></button>
-            </div>
-        </section>
-        <section aria-label="Фотографии пользователя"
-                 class="gallery">
-            <ul class="gallery__grid">
-            </ul>
-        </section>
-    </main>
-    <footer class="footer">
-        <p class="footer__copyright">© 2021 Mesto Russia</p>
-    </footer>
+  <header class="header page__header">
+    <a class="header__link"
+       href="#">
+      <img alt="Логотип сервиса «Место»."
+           class="header__logo"
+           src="<%=require('./images/logo/logo_color_white.svg')%>">
+    </a>
+  </header>
+  <main class="main page__main">
+    <section aria-label="Профиль пользователя"
+             class="profile main__profile">
+      <div class="profile__bio">
+        <div class="profile__avatar-wrapper">
+          <img alt="Фотография профиля пользователя"
+               class="profile__avatar"
+               src="<%=require('./images/profile/avatar-gem.png')%>">
+          <button class="button profile__avatar-btn"></button>
+        </div>
+        <div class="profile__details">
+          <div class="profile__row">
+            <h1 class="profile__name"></h1>
+            <button class="button profile__edit-btn"
+                    type="button"></button>
+          </div>
+          <p class="profile__desc"></p>
+        </div>
+        <button class="button profile__add-btn"
+                type="button"></button>
+      </div>
+    </section>
+    <section aria-label="Фотографии пользователя"
+             class="gallery">
+      <ul class="gallery__grid">
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2021 Mesto Russia</p>
+  </footer>
 </div>
 <section aria-label="Форма редактирования картинки профиля"
          class="modal modal_type_avatar page__modal">
-    <div class="modal__container">
-        <button class="modal__close-btn"
-                type="button"></button>
-        <form class="modal__form"
-              name="avatar-form">
-            <h2 class="modal__title">Обновить аватар</h2>
-            <input aria-label="Поле ввода для ссылки на картинку"
-                   class="modal__input modal__input_field_avatar"
-                   id="field_avatar"
-                   name="avatar-field-link"
-                   placeholder="Ссылка на новую картинку профиля"
-                   required
-                   type="url">
-            <span class="modal__error modal__error_field_avatar"></span>
-            <button aria-label="Кнопка сохранения новой картинки профиля"
-                    class="button modal__button"
-                    type="submit">Сохранить
-            </button>
-        </form>
-    </div>
+  <div class="modal__container">
+    <button class="modal__close-btn"
+            type="button"></button>
+    <form class="modal__form"
+          name="avatar-form">
+      <h2 class="modal__title">Обновить аватар</h2>
+      <input aria-label="Поле ввода для ссылки на картинку"
+             class="modal__input modal__input_field_avatar"
+             id="field_avatar"
+             name="avatar-field-link"
+             placeholder="Ссылка на новую картинку профиля"
+             required
+             type="url">
+      <span class="modal__error modal__error_field_avatar"></span>
+      <button aria-label="Кнопка сохранения новой картинки профиля"
+              class="button modal__button"
+              type="submit">Сохранить
+      </button>
+    </form>
+  </div>
 </section>
 <section aria-label="Форма ввода имени и описания профиля"
          class="modal modal_type_bio page__modal">
-    <div class="modal__container">
-        <button class="modal__close-btn"
-                type="button"></button>
-        <form class="modal__form"
-              name="bio-form">
-            <h2 class="modal__title">Редактировать профиль</h2>
-            <input aria-label="Поле ввода для имени"
-                   class="modal__input modal__input_field_name"
-                   id="field_name"
-                   maxlength="40"
-                   minlength="2"
-                   name="bio-field-name"
-                   placeholder="Ваше имя"
-                   required
-                   type="text">
-            <span class="modal__error modal__error_field_name"></span>
-            <input aria-label="Поле ввода для описания"
-                   class="modal__input modal__input_field_desc"
-                   id="field_desc"
-                   maxlength="200"
-                   minlength="2"
-                   name="bio-field-desc"
-                   placeholder="Расскажите о себе"
-                   required
-                   type="text">
-            <span class="modal__error modal__error_field_desc"></span>
-            <button aria-label="Кнопка сохранения имени и описания"
-                    class="button modal__button"
-                    type="submit">Сохранить
-            </button>
-        </form>
-    </div>
+  <div class="modal__container">
+    <button class="modal__close-btn"
+            type="button"></button>
+    <form class="modal__form"
+          name="bio-form">
+      <h2 class="modal__title">Редактировать профиль</h2>
+      <input aria-label="Поле ввода для имени"
+             class="modal__input modal__input_field_name"
+             id="field_name"
+             maxlength="40"
+             minlength="2"
+             name="bio-field-name"
+             placeholder="Ваше имя"
+             required
+             type="text">
+      <span class="modal__error modal__error_field_name"></span>
+      <input aria-label="Поле ввода для описания"
+             class="modal__input modal__input_field_desc"
+             id="field_desc"
+             maxlength="200"
+             minlength="2"
+             name="bio-field-desc"
+             placeholder="Расскажите о себе"
+             required
+             type="text">
+      <span class="modal__error modal__error_field_desc"></span>
+      <button aria-label="Кнопка сохранения имени и описания"
+              class="button modal__button"
+              type="submit">Сохранить
+      </button>
+    </form>
+  </div>
 </section>
 <section aria-label="Форма ввода параметров для добавления новой карточки"
          class="modal modal_type_card page__modal">
-    <div class="modal__container">
-        <button class="modal__close-btn"
-                type="button"></button>
-        <form class="modal__form"
-              name="card-form">
-            <h2 class="modal__title">Новое место</h2>
-            <input aria-label="Поле ввода для названия карточки"
-                   class="modal__input modal__input_field_title"
-                   id="field_title"
-                   maxlength="30"
-                   minlength="2"
-                   name="card-field-title"
-                   placeholder="Название"
-                   type="text">
-            <span class="modal__error modal__error_field_title"></span>
-            <input aria-label="Поле ввода для адреса картинки"
-                   class="modal__input modal__input_field_picture"
-                   id="field_picture"
-                   name="card-field-picture"
-                   placeholder="Ссылочка на картиночку"
-                   type="url">
-            <span class="modal__error modal__error_field_picture"></span>
-            <button aria-label="Кнопка сохранения имени и описания"
-                    class="button modal__button"
-                    type="submit">Создать
-            </button>
-        </form>
-    </div>
+  <div class="modal__container">
+    <button class="modal__close-btn"
+            type="button"></button>
+    <form class="modal__form"
+          name="card-form">
+      <h2 class="modal__title">Новое место</h2>
+      <input aria-label="Поле ввода для названия карточки"
+             class="modal__input modal__input_field_title"
+             id="field_title"
+             maxlength="30"
+             minlength="2"
+             name="card-field-title"
+             placeholder="Название"
+             type="text">
+      <span class="modal__error modal__error_field_title"></span>
+      <input aria-label="Поле ввода для адреса картинки"
+             class="modal__input modal__input_field_picture"
+             id="field_picture"
+             name="card-field-picture"
+             placeholder="Ссылочка на картиночку"
+             type="url">
+      <span class="modal__error modal__error_field_picture"></span>
+      <button aria-label="Кнопка сохранения имени и описания"
+              class="button modal__button"
+              type="submit">Создать
+      </button>
+    </form>
+  </div>
 </section>
 <section aria-label="Полноэкранный просмотр картинки"
          class="modal modal_type_picture page__modal">
-    <figure class="modal__figure">
-        <button class="modal__close-btn"
-                type="button"></button>
-        <img alt="Теплый пушистый котенок"
-             class="modal__image"
-             src="https://placekitten.com/1280/720">
-        <figcaption class="modal__caption"></figcaption>
-    </figure>
+  <figure class="modal__figure">
+    <button class="modal__close-btn"
+            type="button"></button>
+    <img alt="Теплый пушистый котенок"
+         class="modal__image"
+         src="https://placekitten.com/1280/720">
+    <figcaption class="modal__caption"></figcaption>
+  </figure>
 </section>
 <section aria-label="Форма подтверждения действия"
          class="modal modal_type_confirm page__modal">
-    <div class="modal__container">
-        <button class="modal__close-btn"
-                type="button"></button>
-        <form class="modal__form"
-              name="confirm-form">
-            <h2 class="modal__title">Вы уверены?</h2>
-            <button aria-label="Кнопка подтверждения действия"
-                    class="button modal__button"
-                    type="submit">Да
-            </button>
-        </form>
-    </div>
+  <div class="modal__container">
+    <button class="modal__close-btn"
+            type="button"></button>
+    <form class="modal__form"
+          name="confirm-form">
+      <h2 class="modal__title">Вы уверены?</h2>
+      <button aria-label="Кнопка подтверждения действия"
+              class="button modal__button"
+              type="submit">Да
+      </button>
+    </form>
+  </div>
 </section>
 <template class="gallery__item-template">
-    <li class="gallery__item">
-        <div class="gallery__image-container">
-            <div class="gallery__image-wrapper">
-                <img class="gallery__image">
-            </div>
-        </div>
-        <button class="delete gallery__delete-btn"
+  <li class="gallery__item">
+    <div class="gallery__image-container">
+      <div class="gallery__image-wrapper">
+        <img class="gallery__image">
+      </div>
+    </div>
+    <button class="delete gallery__delete-btn"
+            type="button"></button>
+    <div class="gallery__caption">
+      <p class="gallery__text"></p>
+      <div class="gallery__like-btn-wrapper">
+        <button class="like gallery__like-btn"
                 type="button"></button>
-        <div class="gallery__caption">
-            <p class="gallery__text"></p>
-            <div class="gallery__like-btn-wrapper">
-                <button class="like gallery__like-btn"
-                        type="button"></button>
-                <span class="gallery__like-btn-counter"></span>
-            </div>
-        </div>
-    </li>
+        <span class="gallery__like-btn-counter"></span>
+      </div>
+    </div>
+  </li>
 </template>
 </body>
 
