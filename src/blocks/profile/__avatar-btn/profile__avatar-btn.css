@@ -1,17 +1,17 @@
 .profile__avatar-btn {
-    opacity: 0;
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: none;
-    border-radius: 50%;
-    background: hsla(0, 0%, 0%, 0.80) url("../../../images/profile/profile__avatar-btn.svg") no-repeat center;
+  opacity: 0;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  border-radius: 50%;
+  background: hsla(0, 0%, 0%, 0.80) url("../../../images/profile/profile__avatar-btn.svg") no-repeat center;
 }
 
 .profile__avatar-btn:hover {
-    opacity: 1;
+  opacity: 1;
 }

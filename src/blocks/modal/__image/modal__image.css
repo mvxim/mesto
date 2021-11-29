@@ -1,11 +1,11 @@
 .modal__image {
-    display: block;
-    max-height: 75vh;
-    max-width: 75vw;
+  display: block;
+  max-height: 75vh;
+  max-width: 75vw;
 }
 
 @media screen and (max-width: 767px) {
-    .modal__image {
-        max-width: 100%;
-    }
+  .modal__image {
+    max-width: 100%;
+  }
 }

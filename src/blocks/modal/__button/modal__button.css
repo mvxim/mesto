@@ -1,25 +1,25 @@
 .modal__button {
-    display: block;
-    width: 100%;
-    border: none;
-    background-color: hsla(0, 0%, 0%, 1);
-    border-radius: 2px;
-    transition: .2s background-color ease;
-    padding: 14px 0 18px;
-    font-size: 18px;
-    line-height: 1.22;
-    text-align: center;
-    font-weight: 400;
-    margin-top: 19px;
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: hsla(0, 0%, 0%, 1);
+  border-radius: 2px;
+  transition: .2s background-color ease;
+  padding: 14px 0 18px;
+  font-size: 18px;
+  line-height: 1.22;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 19px;
 }
 
 .modal__button:hover {
-    background-color: hsla(0, 0%, 0%, .8);
+  background-color: hsla(0, 0%, 0%, .8);
 }
 
 @media screen and (max-width: 767px) {
-    .modal__button {
-        font-size: 14px;
-        line-height: 1.21;
-    }
+  .modal__button {
+    font-size: 14px;
+    line-height: 1.21;
+  }
 }
